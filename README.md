@@ -12,7 +12,7 @@
 ## Building
 
 To build it you will need [qmk_firmware][qmk] checked out and this repo checked
-out to something like `keyboards/ergodox_ez/kthibodeaux`.
+out to something like `keyboards/ergodox_ez/keymaps/kthibodeaux`.
 
  [qmk]: https://github.com/jackhumbert/qmk_firmware
 
