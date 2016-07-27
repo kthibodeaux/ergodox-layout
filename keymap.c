@@ -254,8 +254,20 @@ void matrix_scan_user(void) {
   }
 
   // light up red when holding control
-  if ((keyboard_report->mods & MOD_BIT(KC_LCTRL)) == 1) {
+  if (keyboard_report->mods & MOD_BIT(KC_LCTRL)) {
     ergodox_right_led_on(1);
     ergodox_right_led_set(1, 100);
+  }
+
+  // light up green when holding gui
+  if (keyboard_report->mods & MOD_BIT(KC_LGUI)) {
+    ergodox_right_led_on(2);
+    ergodox_right_led_set(2, 100);
+  }
+
+  // light up blue when holding shift
+  if (keyboard_report->mods & (MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT))) {
+    ergodox_right_led_on(3);
+    ergodox_right_led_set(3, 100);
   }
 };
