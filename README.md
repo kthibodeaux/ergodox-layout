@@ -2,8 +2,8 @@
 
 ## Layout
 * F and J act as CTRL when held
-* D and K act as GUI when held
-* S and L act as LSHIFT when held
+* D and K act as LSHIFT when held
+* S and L act as LGUI when held
 * ; tap dances to :
 * LED indicators show layer number in binary
 
