@@ -1,7 +1,8 @@
 # My ErgoDox EZ configuration.
 
 ## Layout
-* D, F, J, and K act as CTRL when held
+* F and J act as CTRL when held
+* D and K act as GUI when held
 * S and L act as LSHIFT when held
 * ; tap dances to :
 * LED indicators show layer number in binary

@@ -19,7 +19,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
    * | Del    |   Q  |   W  |   E  |   R  |   T  |  L2  |           |  L2  |   Y  |   U  |   I  |   O  |   P  |   \    |
    * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-   * | BkSp   |   A  |LSFT/S|  ^/D |  ^/F |   G  |------|           |------|   H  |  ^/J |  ^/K |LSFT/L|   ;  |' / Cmd |
+   * | BkSp   |   A  |LSFT/S|GUI/D |  ^/F |   G  |------|           |------|   H  |  ^/J |GUI/K |LSFT/L|   ;  |' / Cmd |
    * |--------+------+------+------+------+------| Hyper|           | Meh  |------+------+------+------+------+--------|
    * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  | RShift |
    * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
@@ -39,7 +39,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       // left hand
       KC_EQL,           KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   TG(NOMO),
       KC_DELT,          KC_Q,         KC_W,   KC_E,   KC_R,   KC_T,   TG(SYMB),
-      KC_BSPC,          KC_A,         MT(MOD_LSFT, KC_S),   CTL_T(KC_D),   CTL_T(KC_F),   KC_G,
+      KC_BSPC,          KC_A,         MT(MOD_LSFT, KC_S),   GUI_T(KC_D),   CTL_T(KC_F),   KC_G,
       KC_LSFT,          KC_Z,         KC_X,   KC_C,   KC_V,   KC_B,   ALL_T(KC_NO),
       LT(MDIA, KC_GRV), KC_QUOT,      LALT(KC_LSFT),  KC_LEFT,KC_RGHT,
       ALT_T(KC_APP),    KC_LGUI,
@@ -48,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       // right hand
       TG(NOMO),         KC_6,   KC_7,   KC_8,   KC_9,   KC_0,             KC_MINS,
       TG(SYMB),         KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,             KC_BSLS,
-      KC_H,             CTL_T(KC_J),   CTL_T(KC_K),   MT(MOD_LSFT, KC_L),   TD(CT_CLN),          GUI_T(KC_QUOT),
+      KC_H,             CTL_T(KC_J),   GUI_T(KC_K),   MT(MOD_LSFT, KC_L),   TD(CT_CLN),          GUI_T(KC_QUOT),
       MEH_T(KC_NO),     KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,   KC_RSFT,
       KC_UP,            KC_DOWN,KC_LBRC,KC_RBRC,          LT(MDIA, KC_NO),
       KC_LALT,          CTL_T(KC_ESC),
