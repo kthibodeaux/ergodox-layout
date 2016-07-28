@@ -8,7 +8,8 @@
 #define MDIA 3 // media keys
 
 enum {
-  TD_SCLN
+  TD_SCLN,
+  TD_SPC
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -44,7 +45,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       LT(MDIA, KC_GRV), KC_QUOT,      LALT(KC_LSFT),  KC_LEFT,KC_RGHT,
       ALT_T(KC_APP),    KC_LGUI,
       KC_HOME,
-      KC_SPC,           KC_BSPC,     CTL_T(KC_ESC),
+      TD(TD_SPC),           KC_BSPC,     CTL_T(KC_ESC),
       // right hand
       TG(NOMO),         KC_6,   KC_7,   KC_8,   KC_9,   KC_0,             KC_MINS,
       TG(SYMB),         KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,             KC_BSLS,
@@ -198,11 +199,25 @@ void do_tap_dance (qk_tap_dance_state_t *state) {
         unregister_code (KC_LSFT);
         reset_tap_dance (state);
       }
+      break;
+    case TD(TD_SPC):
+      if (state->count == 1) {
+        register_code (KC_SPC);
+        unregister_code (KC_SPC);
+      } else {
+        register_code (KC_LSFT);
+        register_code (KC_MINS);
+        unregister_code (KC_MINS);
+        unregister_code (KC_LSFT);
+        reset_tap_dance (state);
+      }
+      break;
   }
 }
 
 const qk_tap_dance_action_t tap_dance_actions[] = {
-  [TD_SCLN] = ACTION_TAP_DANCE_FN (do_tap_dance)
+  [TD_SCLN] = ACTION_TAP_DANCE_FN (do_tap_dance),
+  [TD_SPC] = ACTION_TAP_DANCE_FN (do_tap_dance)
 };
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
