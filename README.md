@@ -5,15 +5,15 @@
 * D and K act as LSHIFT when held
 * S and L act as LGUI when held
 
-### Tap dancing
+## Tap dancing
 * ; tap dances to :
 * Space tap dances to _
 
-### Misc
+## Misc
 * LED indicators show layer number in binary and light brightly when a modifier
   is pressed
 
-### Todo
+## Todo
 * A new layer that is easy to toggle should allow common symbols to be pressed
   from the home row.  This will likely be done by making backspace and tab act
   as a toggle to the layer when held.
