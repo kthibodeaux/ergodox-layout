@@ -21,7 +21,7 @@
 ## Building
 
 To build it you will need [qmk_firmware][qmk] checked out and this repo checked
-out to something like `keyboards/ergodox_ez/keymaps/kthibodeaux`.
+out to something like `keyboards/ergodox/keymaps/kthibodeaux`.
 
  [qmk]: https://github.com/jackhumbert/qmk_firmware
 
@@ -29,6 +29,6 @@ out to something like `keyboards/ergodox_ez/keymaps/kthibodeaux`.
 $ git clone https://github.com/jackhumbert/qmk_firmware.git
 $ cd qmk_firmware
 $ git clone https://github.com/kthibodeaux/ergodox-layout.git \
-            keyboards/ergodox_ez/keymaps/kthibodeaux
-$ make KEYBOARD=ergodox_ez KEYMAP=kthibodeaux
+            keyboards/ergodox/keymaps/kthibodeaux
+$ make KEYBOARD=ergodox KEYMAP=kthibodeaux
 ```
