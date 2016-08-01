@@ -1,9 +1,9 @@
 # My ErgoDox EZ configuration.
 
 ## Modifiers
-* F and J act as CTRL when held
-* D and K act as LSHIFT when held
-* S and L act as LGUI when held
+* T and N act as CTRL when held
+* S and E act as LSHIFT when held
+* R and I act as LGUI when held
 
 ## Tap dancing
 * ; tap dances to :
