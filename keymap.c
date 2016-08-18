@@ -173,7 +173,7 @@ void do_tap_dance (qk_tap_dance_state_t *state) {
   }
 }
 
-const qk_tap_dance_action_t tap_dance_actions[] = {
+qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_SCLN] = ACTION_TAP_DANCE_FN (do_tap_dance),
   [TD_SPC] = ACTION_TAP_DANCE_FN (do_tap_dance)
 };
