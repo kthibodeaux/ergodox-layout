@@ -12,13 +12,15 @@ enum {
   TD_SPC
 };
 
+#define M_TMUX M(0)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Keymap 0: Basic layer
    *
    * ,--------------------------------------------------.           ,--------------------------------------------------.
    * |   =    |   1  |   2  |   3  |   4  |   5  | NOMO |           | NOMO |   6  |   7  |   8  |   9  |   0  |   -    |
    * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-   * | Del    |   Q  |   W  |   F  |   P  |   G  |      |           |      |   J  |   L  |   U  |   Y  |   ;  |   \    |
+   * | Del    |   Q  |   W  |   F  |   P  |   G  |      |           | ^ SPC|   J  |   L  |   U  |   Y  |   ;  |   \    |
    * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
    * | BkSp   |   A  |LGUI/R|LSFT/S|  ^/T |   D  |------|           |------|   H  |  ^/N |LSFT/E|LGUI/I|   O  |' / Cmd |
    * |--------+------+------+------+------+------| Hyper|           | Meh  |------+------+------+------+------+--------|
@@ -48,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       TD(TD_SPC),           KC_BSPC,     CTL_T(KC_ESC),
       // right hand
       TG(NOMO),         KC_6,   KC_7,   KC_8,   KC_9,   KC_0,             KC_MINS,
-      KC_NO,            KC_J,   KC_L,   KC_U,   KC_Y,   TD(TD_SCLN),             KC_BSLS,
+      M_TMUX,            KC_J,   KC_L,   KC_U,   KC_Y,   TD(TD_SCLN),             KC_BSLS,
       KC_H,             CTL_T(KC_N),   MT(MOD_LSFT, KC_E), GUI_T(KC_I),   KC_O,          GUI_T(KC_QUOT),
       MEH_T(KC_NO),     KC_K,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,   KC_RSFT,
       KC_UP,            KC_DOWN,KC_LBRC,KC_RBRC,          KC_NO,
@@ -120,20 +122,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
   [SYMB] = KEYMAP(
       //left hand
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F11,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_LCBR, KC_RCBR, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_AMPR, KC_PIPE, KC_QUOT, KC_DQUO, KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_PLUS, KC_EQL,  KC_TRNS, KC_TRNS,
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-      KC_TRNS, KC_TRNS,
-      KC_TRNS,
+               KC_TRNS, KC_TRNS,
+                        KC_TRNS,
       KC_TRNS, KC_TRNS, KC_TRNS,
       // right hand
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-      KC_TRNS, KC_MUTE, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-      KC_TRNS, KC_VOLU, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-      KC_TRNS, KC_VOLD, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_F12,  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_TRNS,
+      KC_TRNS, KC_MUTE, KC_LPRN, KC_RPRN, KC_TRNS, KC_TRNS, KC_TRNS,
+               KC_VOLU, KC_COLN, KC_AT,   KC_MINS, KC_HASH, KC_TRNS,
+      KC_TRNS, KC_VOLD, KC_LBRC, KC_RBRC, KC_TRNS, KC_TRNS, KC_TRNS,
+                        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
       KC_TRNS, KC_TRNS,
       KC_TRNS,
       KC_TRNS, KC_TRNS, KC_TRNS
@@ -184,7 +186,10 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
   switch(id) {
     case 0:
       if (record->event.pressed) {
-        SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
+        register_code(KC_LCTRL);
+        register_code(KC_SPC);
+        unregister_code(KC_SPC);
+        unregister_code(KC_LCTRL);
       }
       break;
   }
