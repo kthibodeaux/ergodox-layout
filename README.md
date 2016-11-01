@@ -1,13 +1,10 @@
 # My ErgoDox EZ configuration.
 
-## Modifiers
+## Special
 * T and N act as CTRL when held
-* S and E act as LSHIFT when held
-* R and I act as LGUI when held
-
-## Tap dancing
 * ; tap dances to :
 * Space tap dances to _
+* Z tap dances to one shot modifier CMD
 
 ## Misc
 * LED indicators show layer number in binary and light brightly when a modifier

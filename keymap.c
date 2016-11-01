@@ -9,7 +9,8 @@
 
 enum {
   TD_SCLN,
-  TD_SPC
+  TD_SPC,
+  TD_Z
 };
 
 #define M_TMUX M(0)
@@ -22,7 +23,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
    * | Del    |   Q  |   W  |   F  |   P  |   G  |      |           | ^ SPC|   J  |   L  |   U  |   Y  |   ;  |   \    |
    * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-   * | BkSp   |   A  |LGUI/R|LSFT/S|  ^/T |   D  |------|           |------|   H  |  ^/N |LSFT/E|LGUI/I|   O  |' / Cmd |
+   * | BkSp   |   A  |   R  |   S  |  ^/T |   D  |------|           |------|   H  |  ^/N |   E  |   I  |   O  |' / Cmd |
    * |--------+------+------+------+------+------| Hyper|           | Meh  |------+------+------+------+------+--------|
    * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   K  |   M  |   ,  |   .  |   /  | RShift |
    * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
@@ -42,16 +43,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       // left hand
       KC_EQL,           KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   TG(NOMO),
       KC_DELT,          KC_Q,         KC_W,   KC_F,   KC_P,   KC_G,   KC_NO,
-      KC_BSPC,          KC_A,         GUI_T(KC_R), MT(MOD_LSFT, KC_S),   CTL_T(KC_T),   KC_D,
-      KC_LSFT,          KC_Z,         KC_X,   KC_C,   KC_V,   KC_B,   ALL_T(KC_NO),
+      KC_BSPC,          KC_A,         KC_R,   KC_S,   CTL_T(KC_T),   KC_D,
+      KC_LSFT,          TD(TD_Z),         KC_X,   KC_C,   KC_V,   KC_B,   ALL_T(KC_NO),
       KC_GRV, KC_QUOT,      LALT(KC_LSFT),  KC_LEFT,KC_RGHT,
       ALT_T(KC_APP),    KC_LGUI,
       KC_HOME,
       TD(TD_SPC),           KC_BSPC,     CTL_T(KC_ESC),
       // right hand
       TG(NOMO),         KC_6,   KC_7,   KC_8,   KC_9,   KC_0,             KC_MINS,
-      M_TMUX,            KC_J,   KC_L,   KC_U,   KC_Y,   TD(TD_SCLN),             KC_BSLS,
-      KC_H,             CTL_T(KC_N),   MT(MOD_LSFT, KC_E), GUI_T(KC_I),   KC_O,          GUI_T(KC_QUOT),
+      M_TMUX,            KC_J,   KC_L,  KC_U,   KC_Y,   TD(TD_SCLN),             KC_BSLS,
+      KC_H,             CTL_T(KC_N),    KC_E,   KC_I,   KC_O,          GUI_T(KC_QUOT),
       MEH_T(KC_NO),     KC_K,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,   KC_RSFT,
       KC_UP,            KC_DOWN,KC_LBRC,KC_RBRC,          KC_NO,
       KC_LALT,          CTL_T(KC_ESC),
@@ -172,12 +173,22 @@ void do_tap_dance (qk_tap_dance_state_t *state) {
         reset_tap_dance (state);
       }
       break;
+    case TD(TD_Z):
+      if (state->count == 1) {
+        register_code (KC_Z);
+        unregister_code (KC_Z);
+      } else {
+        set_oneshot_mods (MOD_LGUI);
+        reset_tap_dance (state);
+      }
+      break;
   }
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_SCLN] = ACTION_TAP_DANCE_FN (do_tap_dance),
-  [TD_SPC] = ACTION_TAP_DANCE_FN (do_tap_dance)
+  [TD_SPC] = ACTION_TAP_DANCE_FN (do_tap_dance),
+  [TD_Z] = ACTION_TAP_DANCE_FN (do_tap_dance)
 };
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
