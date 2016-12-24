@@ -10,13 +10,13 @@
 enum {
   TD_SCLN,
   TD_SPC,
-  TD_W,
   TD_Z
 };
 
-bool w_is_held = false;
+static bool w_is_held;
 
 #define M_TMUX M(0)
+#define M_HOLD_W M(1)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Keymap 0: Basic layer
@@ -67,8 +67,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,--------------------------------------------------.           ,--------------------------------------------------.
    * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
    * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-   * |        |      |   W  |      |      |      |      |           |      |      |      |      |      |      |        |
-   * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+   * |        |      |      |      |      |      | HOLD |           |      |      |      |      |      |      |        |
+   * |--------+------+------+------+------+------|   W  |           |      |------+------+------+------+------+--------|
    * |        |      |      |      |   T  |      |------|           |------|      |   N  |      |      |      |        |
    * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
    * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
@@ -86,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [GAME] = KEYMAP(
       //left hand
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-      KC_TRNS, KC_TRNS, TD(TD_W), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, M_HOLD_W,
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_T,    KC_TRNS,
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
@@ -176,21 +176,6 @@ void do_tap_dance (qk_tap_dance_state_t *state) {
         reset_tap_dance (state);
       }
       break;
-    case TD(TD_W):
-      if (state->count == 1) {
-        register_code (KC_W);
-        unregister_code (KC_W);
-      } else {
-        if (w_is_held == true) {
-          w_is_held = false;
-          unregister_code (KC_W);
-        } else {
-          w_is_held = true;
-          register_code (KC_W);
-        }
-        reset_tap_dance (state);
-      }
-      break;
     case TD(TD_Z):
       if (state->count == 1) {
         register_code (KC_Z);
@@ -206,7 +191,6 @@ void do_tap_dance (qk_tap_dance_state_t *state) {
 qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_SCLN] = ACTION_TAP_DANCE_FN (do_tap_dance),
   [TD_SPC] = ACTION_TAP_DANCE_FN (do_tap_dance),
-  [TD_W] = ACTION_TAP_DANCE_FN (do_tap_dance),
   [TD_Z] = ACTION_TAP_DANCE_FN (do_tap_dance)
 };
 
@@ -220,6 +204,17 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
         register_code(KC_SPC);
         unregister_code(KC_SPC);
         unregister_code(KC_LCTRL);
+      }
+      break;
+    case 1:
+      if (record->event.pressed) {
+        if (w_is_held == true) {
+          w_is_held = false;
+          unregister_code (KC_W);
+        } else {
+          w_is_held = true;
+          register_code (KC_W);
+        }
       }
       break;
   }
