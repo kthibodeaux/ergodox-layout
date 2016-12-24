@@ -4,7 +4,7 @@
 #include "version.h"
 
 #define BASE 0 // default layer
-#define NOMO 1 // default without extra modifiers
+#define GAME 1 // default without extra modifiers
 #define SYMB 2 // symbols
 
 enum {
@@ -19,7 +19,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Keymap 0: Basic layer
    *
    * ,--------------------------------------------------.           ,--------------------------------------------------.
-   * |   =    |   1  |   2  |   3  |   4  |   5  | NOMO |           | NOMO |   6  |   7  |   8  |   9  |   0  |   -    |
+   * |   =    |   1  |   2  |   3  |   4  |   5  | GAME |           | GAME |   6  |   7  |   8  |   9  |   0  |   -    |
    * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
    * | Del    |   Q  |   W  |   F  |   P  |   G  |      |           | ^ SPC|   J  |   L  |   U  |   Y  |   ;  |   \    |
    * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // Otherwise, it needs KC_*
   [BASE] = KEYMAP(  // layer 0 : default
       // left hand
-      KC_EQL,           KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   TG(NOMO),
+      KC_EQL,           KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   TG(GAME),
       KC_DELT,          KC_Q,         KC_W,   KC_F,   KC_P,   KC_G,   KC_NO,
       KC_BSPC,          KC_A,         KC_R,   KC_S,   CTL_T(KC_T),   KC_D,
       KC_LSFT,          TD(TD_Z),         KC_X,   KC_C,   KC_V,   KC_B,   ALL_T(KC_NO),
@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_HOME,
       TD(TD_SPC),           KC_BSPC,     CTL_T(KC_ESC),
       // right hand
-      TG(NOMO),         KC_6,   KC_7,   KC_8,   KC_9,   KC_0,             KC_MINS,
+      TG(GAME),         KC_6,   KC_7,   KC_8,   KC_9,   KC_0,             KC_MINS,
       M_TMUX,            KC_J,   KC_L,  KC_U,   KC_Y,   TD(TD_SCLN),             KC_BSLS,
       KC_H,             CTL_T(KC_N),    KC_E,   KC_I,   KC_O,          GUI_T(KC_QUOT),
       MEH_T(KC_NO),     KC_K,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,   KC_RSFT,
@@ -80,10 +80,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                                 |      |      |      |       |      |      |      |
    *                                 `--------------------'       `--------------------'
    */
-  [NOMO] = KEYMAP(  // layer 1 : modifiers
+  [GAME] = KEYMAP(  // layer 1 : modifiers
       //left hand
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_W, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_T,    KC_TRNS,
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
