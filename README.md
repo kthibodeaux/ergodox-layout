@@ -9,11 +9,6 @@
 * LED indicators show layer number in binary and light brightly when a modifier
   is pressed
 
-## Todo
-* A new layer that is easy to toggle should allow common symbols to be pressed
-  from the home row.  This will likely be done by making backspace and tab act
-  as a toggle to the layer when held.
-
 ## Building
 
 To build it you will need [qmk_firmware][qmk] checked out and this repo checked
