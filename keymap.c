@@ -243,8 +243,8 @@ void matrix_scan_user(void) {
     ergodox_right_led_set(2, 100);
   }
 
-  // light up blue when holding gui
-  if (keyboard_report->mods & MOD_BIT(KC_LGUI)) {
+  // light up blue when holding alt
+  if (keyboard_report->mods & MOD_BIT(KC_LALT)) {
     ergodox_right_led_on(3);
     ergodox_right_led_set(3, 100);
   }
