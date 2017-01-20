@@ -3,9 +3,7 @@
 ## Special
 * T and N act as CTRL when held
 * R and I act as ALT when held
-* ; tap dances to :
 * Space tap dances to _
-* Z tap dances to one shot modifier CMD
 
 ## Misc
 * LED indicators show layer number in binary and light brightly when a modifier
