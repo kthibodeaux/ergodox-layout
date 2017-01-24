@@ -8,6 +8,7 @@
 #define SYMB 2 // symbols
 
 enum {
+  TD_SCLN,
   TD_SPC
 };
 
@@ -52,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       TD(TD_SPC),           KC_BSPC,     CTL_T(KC_ESC),
       // right hand
       TG(GAME),         KC_6,   KC_7,   KC_8,   KC_9,   KC_0,             KC_MINS,
-      M_TMUX,            KC_J,   KC_L,  KC_U,   KC_Y,   KC_SCLN,             KC_BSLS,
+      M_TMUX,            KC_J,   KC_L,  KC_U,   KC_Y,   TD(TD_SCLN),             KC_BSLS,
       KC_H,             CTL_T(KC_N),    KC_E,   ALT_T(KC_I),   KC_O,          GUI_T(KC_QUOT),
       MEH_T(KC_NO),     KC_K,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,   KC_RSFT,
       MO(SYMB), KC_LSFT, KC_TRNS, KC_TRNS, KC_TRNS,
@@ -150,6 +151,18 @@ const uint16_t PROGMEM fn_actions[] = {
 
 void do_tap_dance (qk_tap_dance_state_t *state) {
   switch (state->keycode) {
+    case TD(TD_SCLN):
+      if (state->count == 1) {
+        register_code (KC_SCLN);
+        unregister_code (KC_SCLN);
+      } else {
+        register_code (KC_LSFT);
+        register_code (KC_SCLN);
+        unregister_code (KC_SCLN);
+        unregister_code (KC_LSFT);
+        reset_tap_dance (state);
+      }
+      break;
     case TD(TD_SPC):
       if (state->count == 1) {
         register_code (KC_SPC);
@@ -166,6 +179,7 @@ void do_tap_dance (qk_tap_dance_state_t *state) {
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
+  [TD_SCLN] = ACTION_TAP_DANCE_FN (do_tap_dance),
   [TD_SPC] = ACTION_TAP_DANCE_FN (do_tap_dance)
 };
 
