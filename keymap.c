@@ -6,6 +6,7 @@
 #define BASE 0 // default layer
 #define GAME 1 // default without extra modifiers
 #define SYMB 2 // symbols
+#define TMUX 3 // tmux layer
 
 enum {
   TD_SCLN,
@@ -16,6 +17,14 @@ static bool w_is_held;
 
 #define M_TMUX M(0)
 #define M_HOLD_W M(1)
+#define M_TMUX_1 M(2)
+#define M_TMUX_2 M(3)
+#define M_TMUX_3 M(4)
+#define M_TMUX_4 M(5)
+#define M_TMUX_5 M(6)
+#define M_TMUX_COPY_MODE M(7)
+#define M_TMUX_SP M(8)
+#define M_TMUX_VS M(9)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Keymap 0: Basic layer
@@ -25,7 +34,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
    * | Del    |   Q  |   W  |   F  |   P  |   G  |      |           | ^ SPC|   J  |   L  |   U  |   Y  |   ;  |   \    |
    * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-   * | BkSp   |   A  |  a/R |   S  |  ^/T |   D  |------|           |------|   H  |  ^/N |   E  |  a/I |   O  |' / Cmd |
+   * | BkSp   |   A  |  a/R |   S  |  ^/T |   D  |------|           |------|   H  |  ^/N |  t/E |  a/I |   O  |' / Cmd |
    * |--------+------+------+------+------+------| Hyper|           | Meh  |------+------+------+------+------+--------|
    * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   K  |   M  |   ,  |   .  |   /  | RShift |
    * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
@@ -54,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       // right hand
       TG(GAME),         KC_6,   KC_7,   KC_8,   KC_9,   KC_0,             KC_MINS,
       M_TMUX,            KC_J,   KC_L,  KC_U,   KC_Y,   TD(TD_SCLN),             KC_BSLS,
-      KC_H,             CTL_T(KC_N),    KC_E,   ALT_T(KC_I),   KC_O,          GUI_T(KC_QUOT),
+      KC_H,             CTL_T(KC_N),    LT(TMUX, KC_E),   ALT_T(KC_I),   KC_O,          GUI_T(KC_QUOT),
       MEH_T(KC_NO),     KC_K,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,   KC_RSFT,
       MO(SYMB), KC_LSFT, KC_TRNS, KC_TRNS, KC_TRNS,
       KC_LALT,          CTL_T(KC_ESC),
@@ -143,6 +152,47 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TRNS,
       KC_TRNS, KC_DOWN, KC_UP
       ),
+  /* Keymap 3: Tmux layer
+   *
+   * ,--------------------------------------------------.           ,--------------------------------------------------.
+   * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+   * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+   * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+   * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+   * |        |   1  |   2  |   3  |   4  |   5  |------|           |------|      |      |      |      |      |        |
+   * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+   * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+   * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+   *   |      |      |      |      |      |                                       |      |      |      |      |      |
+   *   `----------------------------------'                                       `----------------------------------'
+   *                                        ,-------------.       ,-------------.
+   *                                        |      |      |       |      |      |
+   *                                 ,------|------|------|       |------+------+------.
+   *                                 |      |      |      |       |      |      |      |
+   *                                 |      |      |------|       |------|      |      |
+   *                                 |      |      |      |       |      |      |      |
+   *                                 `--------------------'       `--------------------'
+   */
+  [TMUX] = KEYMAP(
+      //left hand
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, M_TMUX_1, M_TMUX_2, M_TMUX_3, M_TMUX_4, M_TMUX_5,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS,
+      KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS,
+      // right hand
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, M_TMUX_COPY_MODE, KC_TRNS, M_TMUX_VS, M_TMUX_SP, KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS,
+      KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS
+      ),
 };
 
 const uint16_t PROGMEM fn_actions[] = {
@@ -183,6 +233,19 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_SPC] = ACTION_TAP_DANCE_FN (do_tap_dance)
 };
 
+void do_tmux_key(keyrecord_t *record, uint8_t code, uint8_t modifier) {
+  if (record->event.pressed) {
+    register_code(KC_LCTRL);
+    register_code(KC_SPC);
+    unregister_code(KC_SPC);
+    unregister_code(KC_LCTRL);
+    register_code(modifier);
+    register_code(code);
+    unregister_code(code);
+    unregister_code(modifier);
+  }
+}
+
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
   // MACRODOWN only works in this function
@@ -205,6 +268,30 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
           register_code (KC_W);
         }
       }
+      break;
+    case 2:
+      do_tmux_key(record, KC_1, KC_NO);
+      break;
+    case 3:
+      do_tmux_key(record, KC_2, KC_NO);
+      break;
+    case 4:
+      do_tmux_key(record, KC_3, KC_NO);
+      break;
+    case 5:
+      do_tmux_key(record, KC_4, KC_NO);
+      break;
+    case 6:
+      do_tmux_key(record, KC_5, KC_NO);
+      break;
+    case 7:
+      do_tmux_key(record, KC_LBRC, KC_NO);
+      break;
+    case 8:
+      do_tmux_key(record, KC_QUOT, KC_LSFT);
+      break;
+    case 9:
+      do_tmux_key(record, KC_5, KC_LSFT);
       break;
   }
   return MACRO_NONE;
