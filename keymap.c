@@ -30,7 +30,6 @@ void backlight_toggle() {}
 
 static bool w_is_held;
 
-#define M_TMUX M(0)
 #define M_HOLD_W M(1)
 #define M_TMUX_1 M(2)
 #define M_TMUX_2 M(3)
@@ -47,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,--------------------------------------------------.           ,--------------------------------------------------.
    * |   =    |   1  |   2  |   3  |   4  |   5  | GAME |           | GAME |   6  |   7  |   8  |   9  |   0  |   -    |
    * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-   * | Del    |   Q  |   W  |   F  |   P  |   G  |      |           | ^ SPC|   J  |   L  |   U  |   Y  |   ;  |   \    |
+   * | Del    |   Q  |   W  |   F  |   P  |   G  |      |           |      |   J  |   L  |   U  |   Y  |   ;  |   \    |
    * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
    * | BkSp   |   A  |  a/R |   S  |  ^/T |   D  |------|           |------|   H  |  ^/N |  t/E |  a/I |   O  |' / Cmd |
    * |--------+------+------+------+------+------| Hyper|           | Meh  |------+------+------+------+------+--------|
@@ -77,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       TD(TD_SPC),           KC_BSPC,     CTL_T(KC_ESC),
       // right hand
       TG(GAME),         KC_6,   KC_7,   KC_8,   KC_9,   KC_0,             KC_MINS,
-      M_TMUX,            KC_J,   KC_L,  KC_U,   KC_Y,   TD(TD_SCLN),             KC_BSLS,
+      KC_NO,            KC_J,   KC_L,  KC_U,   KC_Y,   TD(TD_SCLN),             KC_BSLS,
       KC_H,             CTL_T(KC_N),    LT(TMUX, KC_E),   ALT_T(KC_I),   KC_O,          GUI_T(KC_QUOT),
       MEH_T(KC_NO),     KC_K,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,   KC_RSFT,
       MO(SYMB), KC_LSFT, KC_TRNS, KC_TRNS, MO(_DYN),
@@ -313,14 +312,6 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
   // MACRODOWN only works in this function
   switch(id) {
-    case 0:
-      if (record->event.pressed) {
-        register_code(KC_LCTRL);
-        register_code(KC_SPC);
-        unregister_code(KC_SPC);
-        unregister_code(KC_LCTRL);
-      }
-      break;
     case 1:
       if (record->event.pressed) {
         if (w_is_held == true) {
