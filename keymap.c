@@ -7,11 +7,26 @@
 #define GAME 1 // default without extra modifiers
 #define SYMB 2 // symbols
 #define TMUX 3 // tmux layer
+#define _DYN 4 // dynamic macros
 
 enum {
   TD_SCLN,
   TD_SPC
 };
+
+enum planck_keycodes {
+  QWERTY = SAFE_RANGE,
+  COLEMAK,
+  DVORAK,
+  PLOVER,
+  LOWER,
+  RAISE,
+  BACKLIT,
+  EXT_PLV,
+  DYNAMIC_MACRO_RANGE,
+};
+void backlight_toggle() {}
+#include "dynamic_macro.h"
 
 static bool w_is_held;
 
@@ -38,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |--------+------+------+------+------+------| Hyper|           | Meh  |------+------+------+------+------+--------|
    * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   K  |   M  |   ,  |   .  |   /  | RShift |
    * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-   *   |      |      |      | LSFT | SYMB |                                       | SYMB | LSFT |      |      |      |
+   *   | DYN  |      |      | LSFT | SYMB |                                       | SYMB | LSFT |      |      | DYN  |
    *   `----------------------------------'                                       `----------------------------------'
    *                                        ,-------------.       ,-------------.
    *                                        | App  | LGui |       | Alt  |Ctrl/Esc|
@@ -56,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_DELT,          KC_Q,         KC_W,   KC_F,   KC_P,   KC_G,   KC_NO,
       KC_BSPC,          KC_A,         ALT_T(KC_R),   KC_S,   CTL_T(KC_T),   KC_D,
       KC_LSFT,          KC_Z,         KC_X,   KC_C,   KC_V,   KC_B,   ALL_T(KC_NO),
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_LSFT, MO(SYMB),
+      MO(_DYN), KC_TRNS, KC_TRNS, KC_LSFT, MO(SYMB),
       ALT_T(KC_APP),    KC_LGUI,
       KC_HOME,
       TD(TD_SPC),           KC_BSPC,     CTL_T(KC_ESC),
@@ -65,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       M_TMUX,            KC_J,   KC_L,  KC_U,   KC_Y,   TD(TD_SCLN),             KC_BSLS,
       KC_H,             CTL_T(KC_N),    LT(TMUX, KC_E),   ALT_T(KC_I),   KC_O,          GUI_T(KC_QUOT),
       MEH_T(KC_NO),     KC_K,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,   KC_RSFT,
-      MO(SYMB), KC_LSFT, KC_TRNS, KC_TRNS, KC_TRNS,
+      MO(SYMB), KC_LSFT, KC_TRNS, KC_TRNS, MO(_DYN),
       KC_LALT,          CTL_T(KC_ESC),
       KC_PGUP,
       KC_PGDN,          KC_TAB, KC_ENT
@@ -193,7 +208,55 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TRNS,
       KC_TRNS, KC_TRNS, KC_TRNS
       ),
+  /* Keymap 4: Dynamic macro layer
+   *
+   * ,--------------------------------------------------.           ,--------------------------------------------------.
+   * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+   * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+   * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+   * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+   * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+   * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+   * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+   * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+   *   |      |      |      |      |      |                                       |      |      |      |      |      |
+   *   `----------------------------------'                                       `----------------------------------'
+   *                                        ,-------------.       ,-------------.
+   *                                        |      |      |       |      |      |
+   *                                 ,------|------|------|       |------+------+------.
+   *                                 | REC 1| REC 2|      |       |      |PLAY 1|PLAY 2|
+   *                                 |      |      |------|       |------|      |      |
+   *                                 |      |      |      |       |      |      |      |
+   *                                 `--------------------'       `--------------------'
+   */
+  [_DYN] = KEYMAP(
+      //left hand
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS,
+      KC_TRNS,
+      DYN_REC_START1, DYN_MACRO_PLAY1, KC_TRNS,
+      // right hand
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS,
+      KC_TRNS,
+      DYN_REC_START2, DYN_MACRO_PLAY2, KC_TRNS
+      ),
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!process_record_dynamic_macro(keycode, record)) {
+        return false;
+    }
+    return true;
+}
 
 const uint16_t PROGMEM fn_actions[] = {
   [1] = ACTION_LAYER_TAP_TOGGLE(SYMB)                // FN1 - Momentary Layer 2 (Symbols)
@@ -326,6 +389,10 @@ void matrix_scan_user(void) {
       ergodox_right_led_set(3, 5);
       ergodox_right_led_on(2);
       ergodox_right_led_set(2, 5);
+      break;
+    case 4:
+      ergodox_right_led_on(1);
+      ergodox_right_led_set(1, 5);
       break;
     default:
       // none
