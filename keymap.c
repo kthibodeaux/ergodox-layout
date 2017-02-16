@@ -39,6 +39,7 @@ static bool w_is_held;
 #define M_TMUX_COPY_MODE M(7)
 #define M_TMUX_SP M(8)
 #define M_TMUX_VS M(9)
+#define M_TMUX_NEW M(10)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Keymap 0: Basic layer
@@ -183,7 +184,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                                        |      |      |       |      |      |
    *                                 ,------|------|------|       |------+------+------.
    *                                 |      |      |      |       |      |      |      |
-   *                                 |      |      |------|       |------|      |      |
+   *                                 | NEW  |      |------|       |------|      |      |
    *                                 |      |      |      |       |      |      |      |
    *                                 `--------------------'       `--------------------'
    */
@@ -196,7 +197,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
       KC_TRNS, KC_TRNS,
       KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS,
+      M_TMUX_NEW, KC_TRNS, KC_TRNS,
       // right hand
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
@@ -346,6 +347,9 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
       break;
     case 9:
       do_tmux_key(record, KC_5, KC_LSFT);
+      break;
+    case 10:
+      do_tmux_key(record, KC_C, KC_NO);
       break;
   }
   return MACRO_NONE;
