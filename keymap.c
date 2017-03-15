@@ -39,6 +39,8 @@ static bool w_is_held;
 #define M_TMUX_SP M(8)
 #define M_TMUX_VS M(9)
 #define M_TMUX_NEW M(10)
+#define M_TMUX_ZOOM M(11)
+#define M_TMUX_SHOW_CURRENT_STORY M(12)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Keymap 0: Basic layer
@@ -175,7 +177,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
    * |        |   1  |   2  |   3  |   4  |   5  |------|           |------|      | COPY |XXXXXX| VSP  | SP   |        |
    * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-   * |        |      |      |      |PASTE |      |      |           |      |      |      |      |      |      |        |
+   * |        |      |      |      |PASTE |      |      |           |      |      |STORY |      |      |      |        |
    * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
    *   |      |      |      |      |      |                                       |      |      |      |      |      |
    *   `----------------------------------'                                       `----------------------------------'
@@ -183,7 +185,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                                        |      |      |       |      |      |
    *                                 ,------|------|------|       |------+------+------.
    *                                 |      |      |      |       |      |      |      |
-   *                                 | NEW  |      |------|       |------|      |      |
+   *                                 | NEW  | ZOOM |------|       |------|      |      |
    *                                 |      |      |      |       |      |      |      |
    *                                 `--------------------'       `--------------------'
    */
@@ -196,12 +198,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
       KC_TRNS, KC_TRNS,
       KC_TRNS,
-      M_TMUX_NEW, KC_TRNS, KC_TRNS,
+      M_TMUX_NEW, M_TMUX_ZOOM, KC_TRNS,
       // right hand
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
       KC_TRNS, M_TMUX_COPY_MODE, KC_TRNS, M_TMUX_VS, M_TMUX_SP, KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS, M_TMUX_SHOW_CURRENT_STORY, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
       KC_TRNS, KC_TRNS,
       KC_TRNS,
@@ -336,6 +338,12 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
       break;
     case 10:
       do_tmux_key(record, KC_C, KC_NO);
+      break;
+    case 11:
+      do_tmux_key(record, KC_Z, KC_NO);
+      break;
+    case 12:
+      do_tmux_key(record, KC_J, KC_NO);
       break;
   }
   return MACRO_NONE;
