@@ -11,7 +11,8 @@ enum {
   M_TMUX_NEW,
   M_TMUX_ZOOM,
   M_TMUX_SHOW_CURRENT_STORY,
-  M_HOLD_W
+  M_HOLD_W,
+  M_F3_P
 };
 
 // Tap dances
@@ -76,6 +77,14 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
     case M_TMUX_ZOOM: do_tmux_key(record, KC_Z, KC_NO); break;
     case M_TMUX_SHOW_CURRENT_STORY: do_tmux_key(record, KC_J, KC_NO); break;
     case M_HOLD_W: toggle_hold_w(record); break;
+    case M_F3_P:
+      if (record->event.pressed) {
+        register_code(KC_F3);
+        register_code(KC_P);
+        unregister_code(KC_P);
+        unregister_code(KC_F3);
+      }
+      break;
   }
   return MACRO_NONE;
 };
