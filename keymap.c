@@ -155,11 +155,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,--------------------------------------------------.           ,--------------------------------------------------.
    * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
    * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-   * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+   * |        |      |      |JOIN V|JOIN H|      |      |           |      |      |      |      |      |      |        |
    * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
    * |        |   1  |   2  |   3  |   4  |   5  |------|           |------|      | COPY |XXXXXX| VSP  | SP   |        |
    * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-   * |        |      |      |      |PASTE |      |      |           |      |      |STORY |      |      |      |        |
+   * |        |      |      |OPNURL|PASTE |BREAK |      |           |      |      |STORY |      |      |      |        |
    * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
    *   |      |      |      |      |      |                                       |      |      |      |      |      |
    *   `----------------------------------'                                       `----------------------------------'
@@ -173,11 +173,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
   [_TMUX] = KEYMAP(
       //left hand
-      KC_TRNS, KC_TRNS,     KC_TRNS,     KC_TRNS,     KC_TRNS,     KC_TRNS,     KC_TRNS,
-      KC_TRNS, KC_TRNS,     KC_TRNS,     KC_TRNS,     KC_TRNS,     KC_TRNS,     KC_TRNS,
-      KC_TRNS, M(M_TMUX_1), M(M_TMUX_2), M(M_TMUX_3), M(M_TMUX_4), M(M_TMUX_5),
-      KC_TRNS, KC_TRNS,     KC_TRNS,     KC_TRNS,     TERM_PASTE,  KC_TRNS,     KC_TRNS,
-      KC_TRNS, KC_TRNS,     KC_TRNS,     KC_TRNS,     KC_TRNS,
+      KC_TRNS, KC_TRNS,     KC_TRNS,     KC_TRNS,            KC_TRNS,          KC_TRNS,              KC_TRNS,
+      KC_TRNS, KC_TRNS,     KC_TRNS,     M(M_TMUX_JOIN_V),   M(M_TMUX_JOIN_H), KC_TRNS,              KC_TRNS,
+      KC_TRNS, M(M_TMUX_1), M(M_TMUX_2), M(M_TMUX_3),        M(M_TMUX_4),      M(M_TMUX_5),
+      KC_TRNS, KC_TRNS,     KC_TRNS,     M(M_TMUX_OPEN_URL), TERM_PASTE,       M(M_TMUX_BREAK_PANE), KC_TRNS,
+      KC_TRNS, KC_TRNS,     KC_TRNS,     KC_TRNS,            KC_TRNS,
                      KC_TRNS,        KC_TRNS,
                                      KC_TRNS,
       M(M_TMUX_NEW), M(M_TMUX_ZOOM), KC_TRNS,
