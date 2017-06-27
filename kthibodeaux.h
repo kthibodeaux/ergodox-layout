@@ -25,7 +25,7 @@ enum {
 };
 
 #define NO_KEY KC_NO
-#define TERM_PASTE LALT(LSFT(KC_INS))
+#define TERM_PASTE LALT(LCTL(KC_V))
 
 #define MY_T CTL_T(KC_T)
 #define MY_N CTL_T(KC_N)
