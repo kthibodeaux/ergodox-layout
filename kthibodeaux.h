@@ -33,6 +33,7 @@ enum {
 #define MY_I ALT_T(KC_I)
 #define MY_E LT(_TMUX, KC_E)
 #define MY_SPC TD(TD_SPACE)
+#define MY_S LT(_NUM, KC_S)
 
 static bool w_is_held;
 
