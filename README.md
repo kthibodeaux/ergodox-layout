@@ -21,5 +21,5 @@ $ git clone https://github.com/jackhumbert/qmk_firmware.git
 $ cd qmk_firmware
 $ git clone git@github.com:kthibodeaux/ergodox-layout.git \
             keyboards/ergodox/keymaps/kthibodeaux
-$ make KEYBOARD=ergodox KEYMAP=kthibodeaux
+$ make KEYBOARD=ergodox_ez KEYMAP=kthibodeaux
 ```
