@@ -21,7 +21,8 @@ enum {
 
 // Tap dances
 enum {
-  TD_SPACE
+  TD_SPACE,
+  TD_PERIOD
 };
 
 #define NO_KEY KC_NO
@@ -36,11 +37,27 @@ enum {
 #define MY_O SFT_T(KC_O)
 #define MY_SPC TD(TD_SPACE)
 #define MY_S LT(_NUM, KC_S)
+#define MY_DOT TD(TD_PERIOD)
 
 static bool w_is_held;
 
+void dance_period_double_space(qk_tap_dance_state_t *state, void *user_data) {
+  if (state->count == 1) {
+    register_code(KC_DOT);
+    unregister_code(KC_DOT);
+  } else {
+    register_code(KC_DOT);
+    unregister_code(KC_DOT);
+    register_code(KC_SPACE);
+    unregister_code(KC_SPACE);
+    register_code(KC_SPACE);
+    unregister_code(KC_SPACE);
+  }
+}
+
 qk_tap_dance_action_t tap_dance_actions[] = {
-  [TD_SPACE] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_UNDERSCORE)
+  [TD_SPACE] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_UNDERSCORE),
+  [TD_PERIOD] = ACTION_TAP_DANCE_FN(dance_period_double_space)
 };
 
 void do_tmux_key(keyrecord_t *record, uint8_t code, uint8_t modifier) {
