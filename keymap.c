@@ -168,8 +168,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                                        |      |      |       |      |      |
    *                                 ,------|------|------|       |------+------+------.
    *                                 |      |      |      |       |      |      |      |
-   *                                 | NEW  | ZOOM |------|       |------|      |      |
-   *                                 |      |      |      |       |      |      |      |
+   *                                 | NEW  | ZOOM |------|       |------|      |FINGER|
+   *                                 |      |      |      |       |      |      |PLUGIN|
    *                                 `--------------------'       `--------------------'
    */
   [_TMUX] = KEYMAP(
@@ -190,7 +190,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TRNS, KC_TRNS,             KC_TRNS,                      KC_TRNS,      KC_TRNS,
       KC_TRNS, KC_TRNS,
       KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS
+      KC_TRNS, KC_TRNS, M(M_TMUX_FINGERS_PLUGIN)
       ),
   /* Keymap 4: Dynamic macro layer
    *
