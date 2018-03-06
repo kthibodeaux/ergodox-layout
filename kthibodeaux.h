@@ -37,6 +37,17 @@ enum {
 #define MY_O SFT_T(KC_O)
 #define MY_SPC TD(TD_SPACE)
 
+#define I3_1 LALT(KC_1)
+#define I3_2 LALT(KC_2)
+#define I3_3 LALT(KC_3)
+#define I3_4 LALT(KC_4)
+#define I3_5 LALT(KC_5)
+#define I3_6 LALT(KC_6)
+#define I3_7 LALT(KC_7)
+#define I3_8 LALT(KC_8)
+#define I3_9 LALT(KC_9)
+#define I3_0 LALT(KC_0)
+
 static bool w_is_held;
 
 qk_tap_dance_action_t tap_dance_actions[] = {
