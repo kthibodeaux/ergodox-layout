@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Keymap 0: Basic layer
    *
    * ,--------------------------------------------------.           ,--------------------------------------------------.
-   * |        |      |      |      |      |      | GAME |           | GAME |      |      |      |      |      |        |
+   * |        |   !  |      |      |   $  |   %  | GAME |           | GAME |   ^  |      |   *  |      |      |        |
    * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
    * | Del    |   Q  |   W  |   F  |   P  |   G  |      |           |      |   J  |   L  |   U  |   Y  |   ;  |   \    |
    * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -51,16 +51,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
   [_BASE] = KEYMAP(
       // left hand
-      KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, TG(_GAME),
-      KC_DELT,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,   KC_TRNS,
+      KC_TRNS,  KC_EXLM, KC_TRNS, KC_TRNS, KC_DLR,  KC_PERC, TG(_GAME),
+      KC_DELT,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_TRNS,
       KC_TAB,   MY_A,    MY_R,    KC_S,    MY_T,    KC_D,
-      KC_TRNS,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   ALL_T(KC_NO),
+      KC_TRNS,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    ALL_T(KC_NO),
       MO(_DYN), KC_TRNS, KC_TRNS, KC_TRNS, MO(_NUM),
               ALT_T(KC_APP), KC_LGUI,
                              KC_HOME,
       MY_SPC, KC_BSPC,       KC_ESC,
       // right hand
-      TG(_GAME),    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      TG(_GAME),    KC_CIRC, KC_TRNS, KC_ASTR, KC_TRNS, KC_TRNS, KC_TRNS,
       KC_TRNS,      KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
       KC_H,         MY_N,    MY_E,    MY_I,    MY_O,    KC_TRNS,
       MEH_T(KC_NO), KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_TRNS,
