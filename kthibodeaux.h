@@ -36,7 +36,28 @@ enum {
 #define MY_A SFT_T(KC_A)
 #define MY_O SFT_T(KC_O)
 #define MY_SPC TD(TD_SPACE)
-#define MY_S LT(_NUM, KC_S)
+
+#define I3_1 LALT(KC_1)
+#define I3_2 LALT(KC_2)
+#define I3_3 LALT(KC_3)
+#define I3_4 LALT(KC_4)
+#define I3_5 LALT(KC_5)
+#define I3_6 LALT(KC_6)
+#define I3_7 LALT(KC_7)
+#define I3_8 LALT(KC_8)
+#define I3_9 LALT(KC_9)
+#define I3_0 LALT(KC_0)
+
+#define I3M_1 LALT(LCTL(KC_1))
+#define I3M_2 LALT(LCTL(KC_2))
+#define I3M_3 LALT(LCTL(KC_3))
+#define I3M_4 LALT(LCTL(KC_4))
+#define I3M_5 LALT(LCTL(KC_5))
+#define I3M_6 LALT(LCTL(KC_6))
+#define I3M_7 LALT(LCTL(KC_7))
+#define I3M_8 LALT(LCTL(KC_8))
+#define I3M_9 LALT(LCTL(KC_9))
+#define I3M_0 LALT(LCTL(KC_0))
 
 static bool w_is_held;
 
