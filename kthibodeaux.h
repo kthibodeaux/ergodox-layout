@@ -25,6 +25,11 @@ enum {
   TD_SPACE
 };
 
+enum {
+  TAP_DANCE_MODE_UNDERSCORE,
+  TAP_DANCE_MODE_CAMEL_CASE
+};
+
 #define NO_KEY KC_NO
 #define TERM_PASTE LALT(LCTL(KC_V))
 
@@ -60,9 +65,36 @@ enum {
 #define I3M_0 LALT(LCTL(KC_0))
 
 static bool w_is_held;
+static char space_tap_dance_mode = TAP_DANCE_MODE_UNDERSCORE;
+
+void my_space (qk_tap_dance_state_t *state, void *user_data) {
+  if (state->count == 1) {
+    register_code(KC_SPC);
+    unregister_code(KC_SPC);
+    reset_tap_dance(state);
+  } else if (state->count == 2) {
+    if(space_tap_dance_mode == TAP_DANCE_MODE_UNDERSCORE) {
+      register_code(KC_LSFT);
+      register_code(KC_MINS);
+      unregister_code(KC_MINS);
+      unregister_code(KC_LSFT);
+    } else if (space_tap_dance_mode == TAP_DANCE_MODE_CAMEL_CASE) {
+      set_oneshot_mods(MOD_LSFT);
+    }
+    reset_tap_dance(state);
+  } else {
+    if(space_tap_dance_mode == TAP_DANCE_MODE_UNDERSCORE) {
+      space_tap_dance_mode = TAP_DANCE_MODE_CAMEL_CASE;
+    } else if (space_tap_dance_mode == TAP_DANCE_MODE_CAMEL_CASE) {
+      space_tap_dance_mode = TAP_DANCE_MODE_UNDERSCORE;
+    }
+    reset_tap_dance(state);
+  }
+
+}
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-  [TD_SPACE] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_UNDERSCORE)
+  [TD_SPACE] = ACTION_TAP_DANCE_FN(my_space)
 };
 
 void do_tmux_key(keyrecord_t *record, uint8_t code, uint8_t modifier) {
