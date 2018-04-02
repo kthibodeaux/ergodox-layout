@@ -39,7 +39,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |--------+------+------+------+------+------| Hyper|           | Meh  |------+------+------+------+------+--------|
    * |        |   Z  |   X  |   C  |   V  |   B  |      |           |      |   K  |   M  |   ,  |   .  |   /  |        |
    * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-   *   | DYN  |      |      |      |  NUM |                                       | SYMB |      |      |      | DYN  |
+   *   | DYN  |      |      |      |  NUM |                                       | SYMB | CAPS |      |      | DYN  |
    *   `----------------------------------'                                       `----------------------------------'
    *                                        ,-------------.       ,-------------.
    *                                        | App  | LGui |       | Alt  |Ctrl/Esc|
@@ -64,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TRNS,      KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
       KC_H,         MY_N,    MY_E,    MY_I,    MY_O,    KC_TRNS,
       MEH_T(KC_NO), KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_TRNS,
-      MO(_SYMB),    KC_TRNS, KC_TRNS, KC_TRNS, MO(_DYN),
+      MO(_SYMB),    KC_CAPS, KC_TRNS, KC_TRNS, MO(_DYN),
       KC_LALT, CTL_T(KC_ESC),
       KC_PGUP,
       KC_PGDN, KC_TAB,  KC_ENT
