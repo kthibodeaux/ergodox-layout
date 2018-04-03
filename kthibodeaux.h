@@ -30,6 +30,8 @@ enum {
   TAP_DANCE_MODE_CAMEL_CASE
 };
 
+#define _______ KC_TRNS
+
 #define NO_KEY KC_NO
 #define TERM_PASTE LALT(LCTL(KC_V))
 
