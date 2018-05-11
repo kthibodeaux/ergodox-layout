@@ -3,7 +3,6 @@
 #include "action_layer.h"
 #include "version.h"
 #include "kthibodeaux.h"
-#include "shine.h"
 
 enum layers {
   _BASE,
@@ -19,8 +18,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,--------------------------------------------------.           ,--------------------------------------------------.
    * |        |   !  |      |      |   $  |   %  | GAME |           | GAME |   ^  |      |   *  |      |      |        |
    * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-   * | Del    |   Q  |   W  |   F  |   P  |   G  |      |           |      |   J  |   L  |   U  |   Y  |   ;  |   \    |
-   * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+   * | Del    |   Q  |   W  |   F  |   P  |   G  | RGB  |           | RGB  |   J  |   L  |   U  |   Y  |   ;  |   \    |
+   * |--------+------+------+------+------+------| SWRL |           | TOG  |------+------+------+------+------+--------|
    * | Tab    |   A  |  a/R |   S  |  ^/T |   D  |------|           |------|   H  |  ^/N |  t/E |  a/I |   O  |        |
    * |--------+------+------+------+------+------| Hyper|           | Meh  |------+------+------+------+------+--------|
    * |        |   Z  |   X  |   C  |   V  |   B  |      |           |      |   K  |   M  |   ,  |   .  |   /  |        |
@@ -38,7 +37,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = KEYMAP(
       // left hand
       _______,  KC_EXLM, _______, _______, KC_DLR,  KC_PERC, TG(_GAME),
-      KC_DELT,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    _______,
+      KC_DELT,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    RGB_M_SW,
       KC_TAB,   MY_A,    MY_R,    KC_S,    MY_T,    KC_D,
       _______,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    ALL_T(KC_NO),
       _______, _______, _______, _______, MO(_NUM),
@@ -47,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       MY_SPC, KC_BSPC,       KC_ESC,
       // right hand
       TG(_GAME),    KC_CIRC, _______, KC_ASTR, _______, _______, _______,
-      _______,      KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
+      RGB_TOG,      KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
       KC_H,         MY_N,    MY_E,    MY_I,    MY_O,    _______,
       MEH_T(KC_NO), KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, _______,
       MO(_SYMB),    KC_CAPS, _______, _______, _______,
@@ -223,7 +222,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {
-
+  eeconfig_init();
 };
 
 // Runs constantly in the background, in a loop.
