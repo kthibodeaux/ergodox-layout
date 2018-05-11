@@ -3,29 +3,15 @@
 #include "action_layer.h"
 #include "version.h"
 #include "kthibodeaux.h"
+#include "shine.h"
 
 enum layers {
   _BASE,
   _GAME,
   _SYMB,
   _TMUX,
-  _DYN,
   _NUM
 };
-
-enum planck_keycodes {
-  QWERTY = SAFE_RANGE,
-  COLEMAK,
-  DVORAK,
-  PLOVER,
-  LOWER,
-  RAISE,
-  BACKLIT,
-  EXT_PLV,
-  DYNAMIC_MACRO_RANGE
-};
-void backlight_toggle(void) {}
-#include "dynamic_macro.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Keymap 0: Basic layer
@@ -39,7 +25,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |--------+------+------+------+------+------| Hyper|           | Meh  |------+------+------+------+------+--------|
    * |        |   Z  |   X  |   C  |   V  |   B  |      |           |      |   K  |   M  |   ,  |   .  |   /  |        |
    * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-   *   | DYN  |      |      |      |  NUM |                                       | SYMB | CAPS |      |      | DYN  |
+   *   |      |      |      |      |  NUM |                                       | SYMB | CAPS |      |      |      |
    *   `----------------------------------'                                       `----------------------------------'
    *                                        ,-------------.       ,-------------.
    *                                        | App  | LGui |       | Alt  |Ctrl/Esc|
@@ -55,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_DELT,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    _______,
       KC_TAB,   MY_A,    MY_R,    KC_S,    MY_T,    KC_D,
       _______,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    ALL_T(KC_NO),
-      MO(_DYN), _______, _______, _______, MO(_NUM),
+      _______, _______, _______, _______, MO(_NUM),
               ALT_T(KC_APP), KC_LGUI,
                              KC_HOME,
       MY_SPC, KC_BSPC,       KC_ESC,
@@ -64,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______,      KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
       KC_H,         MY_N,    MY_E,    MY_I,    MY_O,    _______,
       MEH_T(KC_NO), KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, _______,
-      MO(_SYMB),    KC_CAPS, _______, _______, MO(_DYN),
+      MO(_SYMB),    KC_CAPS, _______, _______, _______,
       KC_LALT, CTL_T(KC_ESC),
       KC_PGUP,
       KC_PGDN, KC_TAB,  KC_ENT
@@ -192,48 +178,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______,
       _______, _______, M(M_TMUX_FINGERS_PLUGIN)
       ),
-  /* Keymap 4: Dynamic macro layer
-   *
-   * ,--------------------------------------------------.           ,--------------------------------------------------.
-   * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
-   * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-   * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
-   * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-   * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
-   * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-   * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
-   * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-   *   |      |      |      |      |      |                                       |      |      |      |      |      |
-   *   `----------------------------------'                                       `----------------------------------'
-   *                                        ,-------------.       ,-------------.
-   *                                        |      |      |       |      |      |
-   *                                 ,------|------|------|       |------+------+------.
-   *                                 | REC 1| REC 2|      |       |      |PLAY 1|PLAY 2|
-   *                                 |      |      |------|       |------|      |      |
-   *                                 |      |      |      |       |      |      |      |
-   *                                 `--------------------'       `--------------------'
-   */
-  [_DYN] = KEYMAP(
-      //left hand
-      _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______,
-                      _______,         _______,
-                                       _______,
-      DYN_REC_START1, DYN_MACRO_PLAY1, _______,
-      // right hand
-      _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______,
-      _______,        _______,
-      _______,
-      DYN_REC_START2, DYN_MACRO_PLAY2, _______
-      ),
-  /* Keymap 5: Numpad
+  /* Keymap 4: Numpad
    *
    * ,--------------------------------------------------.           ,--------------------------------------------------.
    * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
@@ -275,13 +220,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, KC_DOWN, KC_UP
       ),
 };
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (!process_record_dynamic_macro(keycode, record)) {
-        return false;
-    }
-    return true;
-}
 
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {
