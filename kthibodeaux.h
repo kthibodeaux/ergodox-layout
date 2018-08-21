@@ -60,22 +60,8 @@ enum {
 #define I3M_9 LALT(LCTL(KC_9))
 #define I3M_0 LALT(LCTL(KC_0))
 
-void my_space (qk_tap_dance_state_t *state, void *user_data) {
-  if (state->count == 1) {
-    register_code(KC_SPC);
-    unregister_code(KC_SPC);
-    reset_tap_dance(state);
-  } else if (state->count == 2) {
-    register_code(KC_LSFT);
-    register_code(KC_MINS);
-    unregister_code(KC_MINS);
-    unregister_code(KC_LSFT);
-    reset_tap_dance(state);
-  }
-}
-
 qk_tap_dance_action_t tap_dance_actions[] = {
-  [TD_SPACE] = ACTION_TAP_DANCE_FN(my_space)
+  [TD_SPACE] = ACTION_TAP_DANCE_DOUBLE(KC_SPACE, KC_UNDERSCORE)
 };
 
 void do_tmux_key(keyrecord_t *record, uint8_t code, uint8_t modifier) {
