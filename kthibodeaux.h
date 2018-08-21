@@ -41,6 +41,7 @@ enum {
 #define MY_A KC_A
 #define MY_O KC_O
 #define MY_SPC TD(TD_SPACE)
+#define MY_ENT KC_ENT
 
 #define I3_1 LALT(KC_1)
 #define I3_2 LALT(KC_2)

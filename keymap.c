@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       MO(_SYMB),    KC_CAPS, _______, _______, _______,
       KC_LALT, CTL_T(KC_ESC),
       KC_PGUP,
-      KC_PGDN, KC_TAB,  KC_ENT
+      KC_PGDN, KC_TAB,  MY_ENT
       ),
   /* Keymap 1: Gaming layer
    *
