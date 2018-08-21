@@ -34,7 +34,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                                 |      |      | Esc  |       | PgDn |        |      |
    *                                 `--------------------'       `----------------------'
    */
-  [_BASE] = KEYMAP(
+  [_BASE] = LAYOUT_ergodox(
       // left hand
       _______,  KC_EXLM, _______, _______, KC_DLR,  KC_PERC, TG(_GAME),
       KC_DELT,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    RGB_M_SW,
@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       MO(_SYMB),    KC_CAPS, _______, _______, _______,
       KC_LALT, CTL_T(KC_ESC),
       KC_PGUP,
-      KC_PGDN, KC_TAB,  KC_ENT
+      KC_PGDN, KC_TAB,  MY_ENT
       ),
   /* Keymap 1: Gaming layer
    *
@@ -75,12 +75,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                                 |      |      |      |       |      |      |      |
    *                                 `--------------------'       `--------------------'
    */
-  [_GAME] = KEYMAP(
+  [_GAME] = LAYOUT_ergodox(
       //left hand
       _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, M(M_HOLD_W),
+      _______, _______, _______, _______, _______, _______, _______,
       _______, KC_A,    KC_R,    KC_S,    KC_T,    _______,
-      KC_LSFT, _______, _______, _______, _______, _______, M(M_F3_P),
+      KC_LSFT, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______,
               _______, _______,
                        _______,
@@ -116,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                                 |      |      |      |       |      |      |      |
    *                                 `--------------------'       `--------------------'
    */
-  [_SYMB] = KEYMAP(
+  [_SYMB] = LAYOUT_ergodox(
       //left hand
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F11,
       _______, _______, KC_TILD, KC_LCBR, KC_RCBR, _______, _______,
@@ -157,7 +157,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                                 |      |      |      |       |      |      |PLUGIN|
    *                                 `--------------------'       `--------------------'
    */
-  [_TMUX] = KEYMAP(
+  [_TMUX] = LAYOUT_ergodox(
       //left hand
       _______, _______,     _______,     _______,            _______,          _______,              _______,
       _______, _______,     _______,     M(M_TMUX_JOIN_V),   M(M_TMUX_JOIN_H), _______,              _______,
@@ -198,7 +198,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                                 |      |      |      |       |      |      |      |
    *                                 `--------------------'       `--------------------'
    */
-  [_NUM] = KEYMAP(
+  [_NUM] = LAYOUT_ergodox(
       //left hand
       _______, _______, _______, _______, _______, _______, _______,
       _______, I3_1,    I3_2,    I3_3,    I3_4,    I3_5,    _______,

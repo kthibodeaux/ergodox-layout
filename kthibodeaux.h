@@ -15,19 +15,12 @@ enum {
   M_TMUX_JOIN_H,
   M_TMUX_BREAK_PANE,
   M_TMUX_OPEN_URL,
-  M_TMUX_FINGERS_PLUGIN,
-  M_HOLD_W,
-  M_F3_P
+  M_TMUX_FINGERS_PLUGIN
 };
 
 // Tap dances
 enum {
   TD_SPACE
-};
-
-enum {
-  TAP_DANCE_MODE_UNDERSCORE,
-  TAP_DANCE_MODE_CAMEL_CASE
 };
 
 #define _______ KC_TRNS
@@ -40,9 +33,10 @@ enum {
 #define MY_R ALT_T(KC_R)
 #define MY_I ALT_T(KC_I)
 #define MY_E LT(_TMUX, KC_E)
-#define MY_A SFT_T(KC_A)
-#define MY_O SFT_T(KC_O)
+#define MY_A KC_A
+#define MY_O KC_O
 #define MY_SPC TD(TD_SPACE)
+#define MY_ENT KC_ENT
 
 #define I3_1 LALT(KC_1)
 #define I3_2 LALT(KC_2)
@@ -66,33 +60,18 @@ enum {
 #define I3M_9 LALT(LCTL(KC_9))
 #define I3M_0 LALT(LCTL(KC_0))
 
-static bool w_is_held;
-static char space_tap_dance_mode = TAP_DANCE_MODE_UNDERSCORE;
-
 void my_space (qk_tap_dance_state_t *state, void *user_data) {
   if (state->count == 1) {
     register_code(KC_SPC);
     unregister_code(KC_SPC);
     reset_tap_dance(state);
   } else if (state->count == 2) {
-    if(space_tap_dance_mode == TAP_DANCE_MODE_UNDERSCORE) {
-      register_code(KC_LSFT);
-      register_code(KC_MINS);
-      unregister_code(KC_MINS);
-      unregister_code(KC_LSFT);
-    } else if (space_tap_dance_mode == TAP_DANCE_MODE_CAMEL_CASE) {
-      set_oneshot_mods(MOD_LSFT);
-    }
-    reset_tap_dance(state);
-  } else {
-    if(space_tap_dance_mode == TAP_DANCE_MODE_UNDERSCORE) {
-      space_tap_dance_mode = TAP_DANCE_MODE_CAMEL_CASE;
-    } else if (space_tap_dance_mode == TAP_DANCE_MODE_CAMEL_CASE) {
-      space_tap_dance_mode = TAP_DANCE_MODE_UNDERSCORE;
-    }
+    register_code(KC_LSFT);
+    register_code(KC_MINS);
+    unregister_code(KC_MINS);
+    unregister_code(KC_LSFT);
     reset_tap_dance(state);
   }
-
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
@@ -109,18 +88,6 @@ void do_tmux_key(keyrecord_t *record, uint8_t code, uint8_t modifier) {
     register_code(code);
     unregister_code(code);
     unregister_code(modifier);
-  }
-}
-
-void toggle_hold_w(keyrecord_t *record) {
-  if (record->event.pressed) {
-    if (w_is_held == true) {
-      w_is_held = false;
-      unregister_code (KC_W);
-    } else {
-      w_is_held = true;
-      register_code (KC_W);
-    }
   }
 }
 
@@ -144,15 +111,6 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
     case M_TMUX_BREAK_PANE: do_tmux_key(record, KC_B, KC_LSFT); break;
     case M_TMUX_OPEN_URL: do_tmux_key(record, KC_O, KC_NO); break;
     case M_TMUX_FINGERS_PLUGIN: do_tmux_key(record, KC_F, KC_LSFT); break;
-    case M_HOLD_W: toggle_hold_w(record); break;
-    case M_F3_P:
-      if (record->event.pressed) {
-        register_code(KC_F3);
-        register_code(KC_P);
-        unregister_code(KC_P);
-        unregister_code(KC_F3);
-      }
-      break;
   }
   return MACRO_NONE;
 };
