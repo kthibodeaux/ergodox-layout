@@ -15,9 +15,7 @@ enum {
   M_TMUX_JOIN_H,
   M_TMUX_BREAK_PANE,
   M_TMUX_OPEN_URL,
-  M_TMUX_FINGERS_PLUGIN,
-  M_HOLD_W,
-  M_F3_P
+  M_TMUX_FINGERS_PLUGIN
 };
 
 // Tap dances
@@ -66,7 +64,6 @@ enum {
 #define I3M_9 LALT(LCTL(KC_9))
 #define I3M_0 LALT(LCTL(KC_0))
 
-static bool w_is_held;
 static char space_tap_dance_mode = TAP_DANCE_MODE_UNDERSCORE;
 
 void my_space (qk_tap_dance_state_t *state, void *user_data) {
@@ -112,18 +109,6 @@ void do_tmux_key(keyrecord_t *record, uint8_t code, uint8_t modifier) {
   }
 }
 
-void toggle_hold_w(keyrecord_t *record) {
-  if (record->event.pressed) {
-    if (w_is_held == true) {
-      w_is_held = false;
-      unregister_code (KC_W);
-    } else {
-      w_is_held = true;
-      register_code (KC_W);
-    }
-  }
-}
-
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
   // MACRODOWN only works in this function
@@ -144,15 +129,6 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
     case M_TMUX_BREAK_PANE: do_tmux_key(record, KC_B, KC_LSFT); break;
     case M_TMUX_OPEN_URL: do_tmux_key(record, KC_O, KC_NO); break;
     case M_TMUX_FINGERS_PLUGIN: do_tmux_key(record, KC_F, KC_LSFT); break;
-    case M_HOLD_W: toggle_hold_w(record); break;
-    case M_F3_P:
-      if (record->event.pressed) {
-        register_code(KC_F3);
-        register_code(KC_P);
-        unregister_code(KC_P);
-        unregister_code(KC_F3);
-      }
-      break;
   }
   return MACRO_NONE;
 };
