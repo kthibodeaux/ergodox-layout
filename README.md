@@ -3,9 +3,9 @@
 ## Special
 * T and N act as CTRL when held
 * R and I act as ALT when held
+* A and O act as LSFT when held
 * E activates a tmux layer when held
 * Space tap dances to _
-* Enter is shift when held
 
 ## Misc
 * LED indicators show layer number in binary and light brightly when a modifier

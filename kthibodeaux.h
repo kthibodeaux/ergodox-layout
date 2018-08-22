@@ -33,10 +33,9 @@ enum {
 #define MY_R ALT_T(KC_R)
 #define MY_I ALT_T(KC_I)
 #define MY_E LT(_TMUX, KC_E)
-#define MY_A KC_A
-#define MY_O KC_O
+#define MY_A LSFT_T(KC_A)
+#define MY_O LSFT_T(KC_O)
 #define MY_SPC TD(TD_SPACE)
-#define MY_ENT LSFT_T(KC_ENT)
 
 #define I3_1 LALT(KC_1)
 #define I3_2 LALT(KC_2)
