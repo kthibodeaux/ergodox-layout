@@ -1,4 +1,3 @@
-#include "../../config.h"
 #define PERMISSIVE_HOLD
 
 #define RGBLIGHT_SLEEP
