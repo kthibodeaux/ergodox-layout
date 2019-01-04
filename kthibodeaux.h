@@ -23,6 +23,10 @@ enum {
   TD_SPACE
 };
 
+enum custom_keycodes {
+  THUMBS_UP = SAFE_RANGE
+};
+
 #define _______ KC_TRNS
 
 #define NO_KEY KC_NO
