@@ -24,8 +24,12 @@ enum {
 };
 
 enum custom_keycodes {
-  THUMBS_UP = SAFE_RANGE
+  THUMBS_UP = SAFE_RANGE,
+  HORSES_QUOTE
 };
+
+#define EMJ_THUMBS_UP_STRING ":+1:"
+#define EMJ_HORSES_QUOTE_STRING "> If I had asked people what they wanted, they would have said faster horses."
 
 #define _______ KC_TRNS
 

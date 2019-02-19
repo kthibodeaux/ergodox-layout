@@ -236,8 +236,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                                        |      |      |       |      |      |
    *                                 ,------|------|------|       |------+------+------.
    *                                 |      |      |      |       |      |      |      |
-   *                                 |      |      |------|       |------|      |      |
-   *                                 |      |      |      |       |      |      |      |
+   *                                 |      |      |------|       |------|HORSES|THUMBS|
+   *                                 |      |      |      |       |      |QUOTE |  UP  |
    *                                 `--------------------'       `--------------------'
    */
   [_EMOJI] = LAYOUT_ergodox(
@@ -258,13 +258,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______,
       _______, _______,
       _______,
-      _______, _______, THUMBS_UP
+      _______, HORSES_QUOTE, THUMBS_UP
       ),
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case THUMBS_UP: if (record->event.pressed) { SEND_STRING(":+1:"); } break;
+    case THUMBS_UP: if (record->event.pressed) { SEND_STRING(EMJ_THUMBS_UP_STRING); } break;
+    case HORSES_QUOTE: if (record->event.pressed) { SEND_STRING(EMJ_HORSES_QUOTE_STRING); } break;
   }
   return true;
 };
