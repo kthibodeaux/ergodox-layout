@@ -70,12 +70,13 @@ enum custom_keycodes {
 #define SU_MOVE KC_M
 #define SU_ROTATE KC_Q
 #define SU_PUSH KC_P
-#define SU_RECT KC_R
+#define SU_RECT CTL_T(KC_R)
 #define SU_TAPE_M KC_T
 #define SU_ORBIT KC_O
 #define SU_PAN KC_H
 #define SU_UNDO LCTL(KC_Z)
 #define SU_REDO LCTL(KC_Y)
+#define SU_2 CTL_T(KC_2)
 
 qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_SPACE] = ACTION_TAP_DANCE_DOUBLE(KC_SPACE, KC_UNDERSCORE)
