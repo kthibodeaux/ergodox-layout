@@ -22,7 +22,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
    * | Del    |   Q  |   W  |   F  |   P  |   G  | RGB  |           | RGB  |   J  |   L  |   U  |   Y  |   ;  |   \    |
    * |--------+------+------+------+------+------| SWRL |           | TOG  |------+------+------+------+------+--------|
-   * | Tab    |   A  |  a/R |   S  |  ^/T |   D  |------|           |------|   H  |  ^/N |  t/E |  a/I |   O  |        |
+   * | Tab    |   A  |  a/R | m/S  |  ^/T |   D  |------|           |------|   H  |  ^/N |  t/E |  a/I |   O  |        |
    * |--------+------+------+------+------+------| Hyper|           | Meh  |------+------+------+------+------+--------|
    * |        |   Z  |   X  |   C  |   V  |   B  |      |           |      |   K  |   M  |   ,  |   .  |   /  |        |
    * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       // left hand
       _______,  KC_EXLM, _______, _______,    KC_DLR,  KC_PERC, TG(_GAME),
       KC_DELT,  KC_Q,    KC_W,    KC_F,       KC_P,    KC_G,    RGB_M_SW,
-      KC_TAB,   MY_A,    MY_R,    KC_S,       MY_T,    KC_D,
+      KC_TAB,   MY_A,    MY_R,    MY_S,       MY_T,    KC_D,
       _______,  KC_Z,    KC_X,    KC_C,       KC_V,    KC_B,    ALL_T(KC_NO),
       _______, _______, _______,  MO(_EMOJI), MO(_NUM),
               ALT_T(KC_APP), KC_LGUI,
