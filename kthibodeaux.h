@@ -1,5 +1,6 @@
 // Macros
 enum {
+  M_HOLD_SHIFT_W,
   M_TMUX_1,
   M_TMUX_2,
   M_TMUX_3,
@@ -78,9 +79,25 @@ enum custom_keycodes {
 #define SU_REDO LCTL(KC_Y)
 #define SU_2 CTL_T(KC_2)
 
+static bool is_hold_shift_w;
+
 qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_SPACE] = ACTION_TAP_DANCE_DOUBLE(KC_SPACE, KC_UNDERSCORE)
 };
+
+void toggle_hold_shift_w(keyrecord_t *record) {
+  if (record->event.pressed) {
+    if (is_hold_shift_w == true) {
+      is_hold_shift_w = false;
+      unregister_code (KC_LSFT);
+      unregister_code (KC_W);
+    } else {
+      is_hold_shift_w = true;
+      register_code (KC_LSFT);
+      register_code (KC_W);
+    }
+  }
+}
 
 void do_tmux_key(keyrecord_t *record, uint8_t code, uint8_t modifier) {
   if (record->event.pressed) {
@@ -99,6 +116,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
   // MACRODOWN only works in this function
   switch (id) {
+    case M_HOLD_SHIFT_W: toggle_hold_shift_w(record); break;
     case M_TMUX_1: do_tmux_key(record, KC_1, KC_NO); break;
     case M_TMUX_2: do_tmux_key(record, KC_2, KC_NO); break;
     case M_TMUX_3: do_tmux_key(record, KC_3, KC_NO); break;
