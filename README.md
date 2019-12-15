@@ -21,7 +21,6 @@ out to something like `keyboards/ergodox/keymaps/kthibodeaux`.
 ```
 $ git clone https://github.com/jackhumbert/qmk_firmware.git
 $ cd qmk_firmware
-$ git checkout cd544e10a
 $ git clone git@github.com:kthibodeaux/ergodox-layout.git \
             layouts/community/ergodox/kthibodeaux
 $ make KEYBOARD=ergodox_ez KEYMAP=kthibodeaux

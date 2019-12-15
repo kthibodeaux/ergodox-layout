@@ -2,3 +2,4 @@
 
 #define RGBLIGHT_SLEEP
 #define RGBLIGHT_ANIMATIONS
+#define DEBOUNCE 45
