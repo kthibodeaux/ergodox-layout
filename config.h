@@ -3,5 +3,8 @@
 #define RGBLIGHT_SLEEP
 #define RGBLIGHT_ANIMATIONS
 
+#ifdef DEBOUNCE
 #undef DEBOUNCE
+#endif
+
 #define DEBOUNCE 45
