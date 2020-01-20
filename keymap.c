@@ -18,7 +18,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Keymap 0: Basic layer
    *
    * ,--------------------------------------------------.           ,--------------------------------------------------.
-   * |        |   !  |      |      |   $  |   %  | GAME |           | GAME |   ^  |      |   *  |      |      |SKETCHUP|
+   * |        |   !  |      |      |   $  |   %  | GAME |           | GAME |   ^  |      |   *  |      |      |        |
    * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
    * | Del    |   Q  |   W  |   F  |   P  |   G  | RGB  |           | RGB  |   J  |   L  |   U  |   Y  |   ;  |   \    |
    * |--------+------+------+------+------+------| SWRL |           | TOG  |------+------+------+------+------+--------|
@@ -47,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                              KC_HOME,
       MY_SPC, KC_BSPC,       KC_ESC,
       // right hand
-      TG(_GAME),    KC_CIRC, _______, KC_ASTR, _______, _______, TG(_SKETCHUP),
+      TG(_GAME),    KC_CIRC, _______, KC_ASTR, _______, _______, _______,
       RGB_TOG,      KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
       KC_H,         MY_N,    MY_E,    MY_I,    MY_O,    _______,
       MEH_T(KC_NO), KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, _______,
