@@ -7,6 +7,9 @@ enum {
   M_TMUX_3,
   M_TMUX_4,
   M_TMUX_5,
+  M_TMUX_6,
+  M_TMUX_7,
+  M_TMUX_8,
   M_TMUX_COPY_MODE,
   M_TMUX_SP,
   M_TMUX_VS,
@@ -138,6 +141,9 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
     case M_TMUX_3: do_tmux_key(record, KC_3, KC_NO); break;
     case M_TMUX_4: do_tmux_key(record, KC_4, KC_NO); break;
     case M_TMUX_5: do_tmux_key(record, KC_5, KC_NO); break;
+    case M_TMUX_6: do_tmux_key(record, KC_6, KC_NO); break;
+    case M_TMUX_7: do_tmux_key(record, KC_7, KC_NO); break;
+    case M_TMUX_8: do_tmux_key(record, KC_8, KC_NO); break;
     case M_TMUX_COPY_MODE: do_tmux_key(record, KC_LBRC, KC_NO); break;
     case M_TMUX_SP: do_tmux_key(record, KC_QUOT, KC_LSFT); break;
     case M_TMUX_VS: do_tmux_key(record, KC_5, KC_LSFT); break;
