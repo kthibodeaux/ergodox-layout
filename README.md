@@ -19,7 +19,7 @@ out to something like `keyboards/ergodox/keymaps/kthibodeaux`.
  [qmk]: https://github.com/jackhumbert/qmk_firmware
 
 ```
-$ git clone https://github.com/jackhumbert/qmk_firmware.git
+$ git clone git@github.com:qmk/qmk_firmware
 $ cd qmk_firmware
 $ make git-submodule
 $ git clone git@github.com:kthibodeaux/ergodox-layout.git \
