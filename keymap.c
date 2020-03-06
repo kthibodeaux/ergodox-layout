@@ -26,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |--------+------+------+------+------+------| Hyper|           | Meh  |------+------+------+------+------+--------|
    * |        |   Z  |   X  |   C  |   V  |   B  |      |           |      |   K  |   M  |   ,  |   .  |   /  |        |
    * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-   *   |      |      |      | EMOJI|  NUM |                                       | SYMB | CAPS |      |      |      |
+   *   |      |      | CAPS | EMOJI|  NUM |                                       | SYMB |      |      |      |      |
    *   `----------------------------------'                                       `----------------------------------'
    *                                        ,-------------.       ,-------------.
    *                                        | App  | LGui |       | Alt  |Ctrl/Esc|
@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_DELT,  KC_Q,    KC_W,    KC_F,       KC_P,    KC_G,    RGB_M_SW,
       KC_TAB,   MY_A,    MY_R,    MY_S,       MY_T,    KC_D,
       _______,  KC_Z,    KC_X,    KC_C,       KC_V,    KC_B,    ALL_T(KC_NO),
-      _______, _______, _______,  MO(_EMOJI), MO(_NUM),
+      _______, _______,  KC_CAPS, MO(_EMOJI), MO(_NUM),
               ALT_T(KC_APP), KC_LGUI,
                              KC_HOME,
       MY_SPC, KC_BSPC,       KC_ESC,
@@ -51,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       RGB_TOG,      KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
       KC_H,         MY_N,    MY_E,    MY_I,    MY_O,    _______,
       MEH_T(KC_NO), KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, _______,
-      MO(_SYMB),    KC_CAPS, _______, _______, _______,
+      MO(_SYMB),    _______, _______, _______, _______,
       KC_LALT, CTL_T(KC_ESC),
       KC_PGUP,
       KC_PGDN, KC_TAB,  KC_ENT
