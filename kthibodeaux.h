@@ -1,6 +1,5 @@
 // Macros
 enum {
-  M_GAME_G,
   M_HOLD_SHIFT_W,
   M_TMUX_1,
   M_TMUX_2,
@@ -50,8 +49,6 @@ enum custom_keycodes {
 #define MY_A LSFT_T(KC_A)
 #define MY_O LSFT_T(KC_O)
 #define MY_SPC TD(TD_SPACE)
-
-#define GAME_G M(M_GAME_G)
 
 #define I3_1 LALT(KC_1)
 #define I3_2 LALT(KC_2)
@@ -134,7 +131,6 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
   // MACRODOWN only works in this function
   switch (id) {
-    case M_GAME_G: do_game_g(record); break;
     case M_HOLD_SHIFT_W: toggle_hold_shift_w(record); break;
     case M_TMUX_1: do_tmux_key(record, KC_1, KC_NO); break;
     case M_TMUX_2: do_tmux_key(record, KC_2, KC_NO); break;

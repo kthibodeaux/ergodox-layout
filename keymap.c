@@ -80,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_GAME] = LAYOUT_ergodox(
       //left hand
       KC_TAB,   _______, _______, _______, _______, _______, _______,
-      _______,  _______, _______, _______, _______, GAME_G , M(M_HOLD_SHIFT_W),
+      _______,  _______, _______, _______, _______, _______, M(M_HOLD_SHIFT_W),
       KC_LCTRL, KC_A,    KC_R,    KC_S,    KC_T,    _______,
       KC_LSFT,  _______, _______, _______, _______, _______, _______,
       _______,  _______, _______, _______, _______,
