@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_PGUP,
       KC_PGDN, KC_TAB,  KC_ENT
       ),
-  /* Keymap 5: Emoji
+  /* Keymap 1: Game
    *
    * ,--------------------------------------------------.           ,--------------------------------------------------.
    * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
