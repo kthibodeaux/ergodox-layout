@@ -117,8 +117,8 @@ void do_game_g(keyrecord_t *record) {
 void do_tmux_key(keyrecord_t *record, uint8_t code, uint8_t modifier) {
   if (record->event.pressed) {
     register_code(KC_LCTRL);
-    register_code(KC_SPC);
-    unregister_code(KC_SPC);
+    register_code(KC_B);
+    unregister_code(KC_B);
     unregister_code(KC_LCTRL);
     register_code(modifier);
     register_code(code);
