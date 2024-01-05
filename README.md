@@ -1,5 +1,7 @@
 # My ErgoDox EZ configuration.
 
+For best results compile with QMK `212aeee202`
+
 ## Special
 * T and N act as CTRL when held
 * R and I act as ALT when held
