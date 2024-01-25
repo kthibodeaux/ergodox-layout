@@ -26,6 +26,6 @@ $ cd qmk_firmware
 $ make git-submodule
 $ git clone git@github.com:kthibodeaux/ergodox-layout.git \
             layouts/community/ergodox/kthibodeaux
-$ make KEYBOARD=ergodox_ez KEYMAP=kthibodeaux
+$ ./util/docker_build.sh ergodox_ez:kthibodeaux
 $ teensy-loader-cli -mmcu=atmega32u4 -w ergodox_ez_kthibodeaux.hex
 ```
