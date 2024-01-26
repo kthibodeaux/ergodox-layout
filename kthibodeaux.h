@@ -1,5 +1,6 @@
 // Macros
 enum {
+  M_HOLD_F,
   M_HOLD_SHIFT_W,
   M_TOGGLE_TMUX_PREFIX,
   M_TMUX_1,
@@ -84,6 +85,7 @@ enum custom_keycodes {
 #define SU_REDO LCTL(KC_Y)
 #define SU_2 CTL_T(KC_2)
 
+static bool is_hold_f;
 static bool is_hold_shift_w;
 static bool use_tmux_prefix_space;
 
@@ -101,6 +103,18 @@ void toggle_tmux_prefix(keyrecord_t *record) {
   }
 }
 
+void toggle_hold_f(keyrecord_t *record) {
+  if (record->event.pressed) {
+    if (is_hold_f == true) {
+      is_hold_f = false;
+      unregister_code (KC_F);
+    } else {
+      is_hold_f = true;
+      register_code (KC_F);
+    }
+  }
+}
+
 void toggle_hold_shift_w(keyrecord_t *record) {
   if (record->event.pressed) {
     if (is_hold_shift_w == true) {
@@ -112,17 +126,6 @@ void toggle_hold_shift_w(keyrecord_t *record) {
       register_code (KC_LSFT);
       register_code (KC_W);
     }
-  }
-}
-
-void do_game_g(keyrecord_t *record) {
-  if (record->event.pressed) {
-    if (is_hold_shift_w == true) {
-      toggle_hold_shift_w(record);
-    }
-    register_code (KC_G);
-  } else {
-    unregister_code (KC_G);
   }
 }
 
@@ -150,6 +153,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
   // MACRODOWN only works in this function
   switch (id) {
+    case M_HOLD_F: toggle_hold_f(record); break;
     case M_HOLD_SHIFT_W: toggle_hold_shift_w(record); break;
     case M_TOGGLE_TMUX_PREFIX: toggle_tmux_prefix(record); break;
     case M_TMUX_1: do_tmux_key(record, KC_1, KC_NO); break;
