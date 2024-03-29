@@ -21,7 +21,11 @@ enum {
   M_TMUX_JOIN_H,
   M_TMUX_BREAK_PANE,
   M_TMUX_OPEN_URL,
-  M_TMUX_FINGERS_PLUGIN
+  M_TMUX_FINGERS_PLUGIN,
+  M_DOUBLE_QUOTE,
+  M_SINGLE_QUOTE,
+  M_CARET,
+  M_TICK
 };
 
 // Tap dances
@@ -175,6 +179,10 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
     case M_TMUX_BREAK_PANE: do_tmux_key(record, KC_B, KC_LSFT); break;
     case M_TMUX_OPEN_URL: do_tmux_key(record, KC_O, KC_NO); break;
     case M_TMUX_FINGERS_PLUGIN: do_tmux_key(record, KC_F, KC_LSFT); break;
+    case M_DOUBLE_QUOTE: if (record->event.pressed) { SEND_STRING("\" "); } break;
+    case M_SINGLE_QUOTE: if (record->event.pressed) { SEND_STRING("\' "); } break;
+    case M_CARET: if (record->event.pressed) { SEND_STRING("^ "); } break;
+    case M_TICK: if (record->event.pressed) { SEND_STRING("` "); } break;
   }
   return MACRO_NONE;
 };
