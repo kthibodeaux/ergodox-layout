@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
   [_BASE] = LAYOUT_ergodox(
       // left hand
-      _______,  _______, _______, _______,    _______,  _______, TG(_GAME),
+      _______,  KC_EXLM, _______, KC_QUOT,    _______,  _______, TG(_GAME),
       KC_DELT,  KC_Q,    KC_W,    KC_F,       KC_P,     KC_G,    RGB_M_SW,
       _______,  MY_A,    MY_R,    MY_S,       MY_T,     KC_D,
       _______,  KC_Z,    KC_X,    KC_C,       KC_V,     KC_B,    M(M_TOGGLE_INTL),
@@ -47,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                              KC_HOME,
       MY_SPC, KC_BSPC,       KC_ESC,
       // right hand
-      TG(_GAME),               _______, _______, _______, _______, _______, _______,
+      TG(_GAME),               _______, _______, KC_TILD, _______, _______, _______,
       RGB_TOG,                 KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
       KC_H,                    MY_N,    MY_E,    MY_I,    MY_O,    _______,
       M(M_TOGGLE_TMUX_PREFIX), KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, _______,
@@ -102,11 +102,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,--------------------------------------------------.           ,--------------------------------------------------.
    * |        |  F1  |  F2  |  F3  |  F4  |  F5  |  F11 |           |  F12 |  F6  |  F7  |  F8  |  F9  |  F10 |        |
    * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-   * |        |   !  |   ~  |   {  |   }  |   $  |      |           |      | MUTE |   (  |   )  |   `  |   *  |        |
+   * |        |      |   ~  |   {  |   }  |   $  |      |           |      | MUTE |   (  |   )  |   *  |      |        |
    * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-   * |        |   &  |   |  |   '  |   "  |   %  |------|           |------| VOLU |   :  |   @  |   -  |   #  |        |
+   * |        |   &  |   |  |   '  |   "  |   `  |------|           |------| VOLU |   :  |   @  |   -  |   #  |        |
    * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-   * |        |      |      |   +  |   =  |   ^  |      |           |      | VOLD |   [  |   ]  |      |      |        |
+   * |        |      |   %  |   +  |   =  |   ^  |      |           |      | VOLD |   [  |   ]  |      |      |        |
    * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
    *   |      |      |      |      |      |                                       |      |      |      |      |      |
    *   `----------------------------------'                                       `----------------------------------'
@@ -121,19 +121,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_SYMB] = LAYOUT_ergodox(
       //left hand
       _______, KC_F1,   KC_F2,     KC_F3,             KC_F4,             KC_F5,      KC_F11,
-      _______, KC_EXLM, M(M_TILD), KC_LCBR,           KC_RCBR,           KC_DLR,     _______,
-      _______, KC_AMPR, KC_PIPE,   M(M_SINGLE_QUOTE), M(M_DOUBLE_QUOTE), KC_PERC,
-      _______, _______, _______,   KC_PLUS,           KC_EQL,            M(M_CARET), _______,
+      _______, _______, M(M_TILD), KC_LCBR,           KC_RCBR,           KC_DLR,     _______,
+      _______, KC_AMPR, KC_PIPE,   M(M_SINGLE_QUOTE), M(M_DOUBLE_QUOTE), M(M_TICK),
+      _______, _______, KC_PERC,   KC_PLUS,           KC_EQL,            M(M_CARET), _______,
       _______, _______, _______,   _______,           _______,
                _______,  RESET,
                          _______,
       KC_LEFT, KC_RIGHT, _______,
       // right hand
-      KC_F12,  KC_F6,   KC_F7,   KC_F8,   KC_F9,     KC_F10,  _______,
-      _______, KC_MUTE, KC_LPRN, KC_RPRN, M(M_TICK), KC_ASTR, _______,
-               KC_VOLU, KC_COLN, KC_AT,   KC_MINS,   KC_HASH, _______,
-      _______, KC_VOLD, KC_LBRC, KC_RBRC, _______,   _______, _______,
-                        _______, _______, _______,   _______, _______,
+      KC_F12,  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
+      _______, KC_MUTE, KC_LPRN, KC_RPRN, KC_ASTR, _______, _______,
+               KC_VOLU, KC_COLN, KC_AT,   KC_MINS, KC_HASH, _______,
+      _______, KC_VOLD, KC_LBRC, KC_RBRC, _______, _______, _______,
+                        _______, _______, _______, _______, _______,
       _______, _______,
       _______,
       _______, _______, _______
