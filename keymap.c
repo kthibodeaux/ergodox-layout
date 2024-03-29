@@ -18,7 +18,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Keymap 0: Basic layer
    *
    * ,--------------------------------------------------.           ,--------------------------------------------------.
-   * |        |      |      |      |      |      | GAME |           | GAME |      |      |      |      |      |        |
+   * |        |   !  |      |   '  |   "  |      | GAME |           | GAME |      |      |   ~  |      |      |        |
    * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
    * | Del    |   Q  |   W  |   F  |   P  |   G  | RGB  |           | RGB  |   J  |   L  |   U  |   Y  |   ;  |   \    |
    * |--------+------+------+------+------+------| SWRL |           | TOG  |------+------+------+------+------+--------|
@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
   [_BASE] = LAYOUT_ergodox(
       // left hand
-      _______,  KC_EXLM, _______, KC_QUOT,    _______,  _______, TG(_GAME),
+      _______,  KC_EXLM, _______, KC_QUOT,    KC_DQUO,  _______, TG(_GAME),
       KC_DELT,  KC_Q,    KC_W,    KC_F,       KC_P,     KC_G,    RGB_M_SW,
       _______,  MY_A,    MY_R,    MY_S,       MY_T,     KC_D,
       _______,  KC_Z,    KC_X,    KC_C,       KC_V,     KC_B,    M(M_TOGGLE_INTL),
