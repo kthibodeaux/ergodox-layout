@@ -26,7 +26,8 @@ enum {
   M_DOUBLE_QUOTE,
   M_SINGLE_QUOTE,
   M_CARET,
-  M_TICK
+  M_TICK,
+  M_TILD
 };
 
 // Tap dances
@@ -210,6 +211,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
     case M_SINGLE_QUOTE: do_dead_key(record, KC_QUOT, KC_NO); break;
     case M_CARET: do_dead_key(record, KC_CIRC, KC_LSFT); break;
     case M_TICK: do_dead_key(record, KC_GRV, KC_NO); break;
+    case M_TILD: do_dead_key(record, KC_TILD, KC_LSFT); break;
   }
   return MACRO_NONE;
 };

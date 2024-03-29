@@ -120,11 +120,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
   [_SYMB] = LAYOUT_ergodox(
       //left hand
-      _______, KC_F1,   KC_F2,   KC_F3,             KC_F4,             KC_F5,      KC_F11,
-      _______, KC_EXLM, KC_TILD, KC_LCBR,           KC_RCBR,           KC_DLR,     _______,
-      _______, KC_AMPR, KC_PIPE, M(M_SINGLE_QUOTE), M(M_DOUBLE_QUOTE), KC_PERC,
-      _______, _______, _______, KC_PLUS,           KC_EQL,            M(M_CARET), _______,
-      _______, _______, _______, _______,           _______,
+      _______, KC_F1,   KC_F2,     KC_F3,             KC_F4,             KC_F5,      KC_F11,
+      _______, KC_EXLM, M(M_TILD), KC_LCBR,           KC_RCBR,           KC_DLR,     _______,
+      _______, KC_AMPR, KC_PIPE,   M(M_SINGLE_QUOTE), M(M_DOUBLE_QUOTE), KC_PERC,
+      _______, _______, _______,   KC_PLUS,           KC_EQL,            M(M_CARET), _______,
+      _______, _______, _______,   _______,           _______,
                _______,  RESET,
                          _______,
       KC_LEFT, KC_RIGHT, _______,
