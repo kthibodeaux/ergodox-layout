@@ -22,7 +22,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
    * | Del    |   Q  |   W  |   F  |   P  |   G  | RGB  |           | RGB  |   J  |   L  |   U  |   Y  |   ;  |   \    |
    * |--------+------+------+------+------+------| SWRL |           | TOG  |------+------+------+------+------+--------|
-   * |        |   A  |   R  | su/S |  ^/T |   D  |------|           |------|   H  |  ^/N |  t/E |  a/I |   O  |        |
+   * |        |   A  |   R  | su/S |  ^/T |   D  |------|           |------|   H  |  ^/N |  t/E | gu/I |   O  |        |
    * |--------+------+------+------+------+------| Hyper|           | Meh  |------+------+------+------+------+--------|
    * |        |   Z  |   X  |   C  |   V  |   B  |      |           |      |   K  |   M  |   ,  |   .  |   /  |        |
    * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
@@ -372,7 +372,7 @@ void matrix_scan_user(void) {
   }
 
   // light up blue when holding alt
-  if (keyboard_report->mods & MOD_BIT(KC_LALT)) {
+  if (keyboard_report->mods & MOD_BIT(KC_LGUI)) {
     ergodox_right_led_on(3);
     ergodox_right_led_set(3, 100);
   }

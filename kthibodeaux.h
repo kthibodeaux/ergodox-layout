@@ -46,7 +46,7 @@ enum custom_keycodes {
 #define MY_N CTL_T(KC_N)
 #define MY_R KC_R
 #define MY_S LT(_SKETCHUP, KC_S)
-#define MY_I ALT_T(KC_I)
+#define MY_I LGUI_T(KC_I)
 #define MY_E LT(_TMUX, KC_E)
 #define MY_A LSFT_T(KC_A)
 #define MY_O LSFT_T(KC_O)
