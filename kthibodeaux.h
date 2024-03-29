@@ -21,7 +21,13 @@ enum {
   M_TMUX_JOIN_H,
   M_TMUX_BREAK_PANE,
   M_TMUX_OPEN_URL,
-  M_TMUX_FINGERS_PLUGIN
+  M_TMUX_FINGERS_PLUGIN,
+  M_TOGGLE_INTL,
+  M_DOUBLE_QUOTE,
+  M_SINGLE_QUOTE,
+  M_CARET,
+  M_TICK,
+  M_TILD
 };
 
 // Tap dances
@@ -87,6 +93,7 @@ enum custom_keycodes {
 
 static bool is_hold_f;
 static bool is_hold_shift_w;
+static bool use_intl = true;
 static bool use_tmux_prefix_space;
 
 qk_tap_dance_action_t tap_dance_actions[] = {
@@ -99,6 +106,16 @@ void toggle_tmux_prefix(keyrecord_t *record) {
       use_tmux_prefix_space = false;
     } else {
       use_tmux_prefix_space = true;
+    }
+  }
+}
+
+void toggle_intl(keyrecord_t *record) {
+  if (record->event.pressed) {
+    if (use_intl == true) {
+      use_intl = false;
+    } else {
+      use_intl = true;
     }
   }
 }
@@ -149,6 +166,20 @@ void do_tmux_key(keyrecord_t *record, uint8_t code, uint8_t modifier) {
   }
 }
 
+void do_dead_key(keyrecord_t *record, int code, uint8_t modifier) {
+  if (record->event.pressed) {
+    register_code(modifier);
+    register_code(code);
+    unregister_code(code);
+    unregister_code(modifier);
+
+    if (use_intl) {
+      register_code(KC_SPC);
+      unregister_code(KC_SPC);
+    }
+  }
+}
+
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
   // MACRODOWN only works in this function
@@ -175,6 +206,12 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
     case M_TMUX_BREAK_PANE: do_tmux_key(record, KC_B, KC_LSFT); break;
     case M_TMUX_OPEN_URL: do_tmux_key(record, KC_O, KC_NO); break;
     case M_TMUX_FINGERS_PLUGIN: do_tmux_key(record, KC_F, KC_LSFT); break;
+    case M_TOGGLE_INTL: toggle_intl(record); break;
+    case M_DOUBLE_QUOTE: do_dead_key(record, KC_DQUO, KC_LSFT); break;
+    case M_SINGLE_QUOTE: do_dead_key(record, KC_QUOT, KC_NO); break;
+    case M_CARET: do_dead_key(record, KC_CIRC, KC_LSFT); break;
+    case M_TICK: do_dead_key(record, KC_GRV, KC_NO); break;
+    case M_TILD: do_dead_key(record, KC_TILD, KC_LSFT); break;
   }
   return MACRO_NONE;
 };
