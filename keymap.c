@@ -33,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                                 ,------|------|------|       |------+--------+------.
    *                                 |      |      | Home |       | PgDn |        |      |
    *                                 | Space| BSPC |------|       |------|  TAB   |Enter |
-   *                                 |      |      | Esc  |       |      |        |      |
+   *                                 |      |      | Esc  |       |AltGr |        |      |
    *                                 `--------------------'       `----------------------'
    */
   [_BASE] = LAYOUT_ergodox(
@@ -52,9 +52,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_H,                    MY_N,    MY_E,    MY_I,    MY_O,    _______,
       M(M_TOGGLE_TMUX_PREFIX), KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, _______,
       MO(_SYMB),               _______, _______, _______, _______,
-      KC_PGUP, KC_LALT,
+      KC_PGUP,       KC_LALT,
       KC_PGDN,
-      _______, KC_TAB,  KC_ENT
+      OSM(MOD_RALT), KC_TAB,  KC_ENT
       ),
   /* Keymap 1: Game
    *
