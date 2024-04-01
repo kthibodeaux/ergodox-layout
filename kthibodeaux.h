@@ -163,6 +163,11 @@ void do_tmux_key(keyrecord_t *record, uint8_t code, uint8_t modifier) {
     register_code(code);
     unregister_code(code);
     unregister_code(modifier);
+
+    if (code == KC_QUOT && use_intl) {
+      register_code(KC_SPC);
+      unregister_code(KC_SPC);
+    }
   }
 }
 
