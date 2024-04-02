@@ -16,7 +16,6 @@ enum {
   M_TMUX_VS,
   M_TMUX_NEW,
   M_TMUX_ZOOM,
-  M_TMUX_SHOW_CURRENT_STORY,
   M_TMUX_JOIN_V,
   M_TMUX_JOIN_H,
   M_TMUX_BREAK_PANE,
@@ -205,7 +204,6 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
     case M_TMUX_VS: do_tmux_key(record, KC_5, KC_LSFT); break;
     case M_TMUX_NEW: do_tmux_key(record, KC_C, KC_NO); break;
     case M_TMUX_ZOOM: do_tmux_key(record, KC_Z, KC_NO); break;
-    case M_TMUX_SHOW_CURRENT_STORY: do_tmux_key(record, KC_J, KC_NO); break;
     case M_TMUX_JOIN_V: do_tmux_key(record, KC_V, KC_LSFT); break;
     case M_TMUX_JOIN_H: do_tmux_key(record, KC_S, KC_LSFT); break;
     case M_TMUX_BREAK_PANE: do_tmux_key(record, KC_B, KC_LSFT); break;
