@@ -26,7 +26,11 @@ enum {
   T_FNGR,
   T_SESH,
   E_THMUP,
-  E_JOY
+  E_JOY,
+  KVM_1,
+  KVM_2,
+  KVM_3,
+  KVM_4
 };
 
 void toggle_intl(keyrecord_t *record) {
@@ -72,6 +76,18 @@ void do_tmux_key(keyrecord_t *record, uint8_t code, uint8_t modifier) {
   }
 }
 
+void do_kvm_key(keyrecord_t *record, uint8_t code) {
+  if (record->event.pressed) {
+    register_code(KC_LCTL);
+    unregister_code(KC_LCTL);
+    register_code(KC_LCTL);
+    unregister_code(KC_LCTL);
+
+    register_code(code);
+    unregister_code(code);
+  }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case S_INTL: toggle_intl(record); break;
@@ -100,6 +116,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case T_SESH: do_tmux_key(record, KC_S, KC_NO); break;
     case E_THMUP: if (record->event.pressed) { SEND_STRING(":+1:"); } break;
     case E_JOY: if (record->event.pressed) { SEND_STRING(":joy:"); } break;
+    case KVM_1: do_kvm_key(record, KC_1); break;
+    case KVM_2: do_kvm_key(record, KC_2); break;
+    case KVM_3: do_kvm_key(record, KC_3); break;
+    case KVM_4: do_kvm_key(record, KC_4); break;
   }
 
   return true;
