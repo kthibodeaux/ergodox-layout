@@ -14,7 +14,7 @@ enum layers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BASE] = LAYOUT_ergodox(
-      _______,  KC_EXLM, _______, KC_QUOT,    KC_DQUO,  KC_TILD, TG(GAME),
+      _______,  _______, _______, KC_QUOT,    KC_DQUO,  KC_TILD, TG(GAME),
       KC_DEL,   KC_Q,    KC_W,    KC_F,       KC_P,     KC_G,    RGB_M_SW,
       _______,  MY_A,    MY_R,    KC_S,       MY_T,     KC_D,
       _______,  KC_Z,    KC_X,    KC_C,       KC_V,     KC_B,    S_INTL,
@@ -62,9 +62,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LEFT, KC_RIGHT, _______,
 
       KC_F12,  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
-      _______, KC_MUTE, KC_LPRN, KC_RPRN, KC_ASTR, _______, _______,
-               KC_VOLU, KC_COLN, KC_AT,   KC_MINS, KC_HASH, _______,
-      _______, KC_VOLD, KC_LBRC, KC_RBRC, _______, _______, _______,
+      _______, KC_EXLM, KC_LPRN, KC_RPRN, KC_ASTR, _______, KC_MUTE,
+               _______, KC_COLN, KC_AT,   KC_MINS, KC_HASH, KC_VOLU,
+      _______, _______, KC_LBRC, KC_RBRC, _______, _______, KC_VOLD,
                         _______, _______, _______, _______, _______,
       _______, _______,
       _______,
