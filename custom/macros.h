@@ -1,4 +1,4 @@
-static bool use_intl = true;
+static bool use_intl = false;
 
 enum {
   S_INTL = SAFE_RANGE,
