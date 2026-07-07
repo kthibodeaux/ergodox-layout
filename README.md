@@ -3,11 +3,10 @@
 ## Building
 
 ```
-$ git clone git@github.com:qmk/qmk_firmware
+$ git clone git@github.com:zsa/qmk_firmware.git
 $ cd qmk_firmware
-$ make git-submodule
 $ git clone git@github.com:kthibodeaux/ergodox-layout.git \
-            layouts/community/ergodox/kthibodeaux
-$ ./util/docker_build.sh ergodox_ez:kthibodeaux
-$ teensy_loader_cli -mmcu=atmega32u4 -w ergodox_ez_base_kthibodeaux.hex
+    keyboards/zsa/ergodox_ez/keymaps/kthibodeaux
+$ ./util/docker_build.sh zsa/ergodox_ez/stm32/base:kthibodeaux
+$ dfu-util -a 0 -d 3297:2002 -s 0x08002000:leave -D zsa_ergodox_ez_stm32_base_kthibodeaux.bin
 ```
